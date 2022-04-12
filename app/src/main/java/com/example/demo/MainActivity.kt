@@ -12,13 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.joinButton.setOnClickListener { joinApp() }
-    }
-
-    private fun joinApp() {
-        val i = Intent(this, OptionsActivity::class.java)
-        startActivity(i)
     }
 
 }

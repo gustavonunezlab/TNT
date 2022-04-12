@@ -1,4 +1,4 @@
-package com.example.demo
+/*package com.example.demo
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -12,8 +12,7 @@ import android.widget.Toast
 import com.example.demo.databinding.ActivityFormBinding
 
 private lateinit var binding: ActivityFormBinding
-const val REQUEST_IMAGE_CAPTURE = 1
-val locationForPhotos: Uri = Uri.parse("Almacenamiento interno/DCIM/Camera")
+//const val REQUEST_IMAGE_CAPTURE = 1
 
 class OptionsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,13 +40,6 @@ class OptionsActivity : AppCompatActivity() {
             }
         }
     }
-
- /*   fun capturePhoto() {
-        val intent = Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA)
-        if (intent.resolveActivity(packageManager) != null) {
-            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
-        }
-    } Guarda la foto en la memoria, pero no la muestra en la app */
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -87,4 +79,4 @@ class OptionsActivity : AppCompatActivity() {
             return true
         }
     }
-}
+} */
