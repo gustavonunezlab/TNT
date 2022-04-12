@@ -7,6 +7,8 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.demo.databinding.FragmentFormBinding
@@ -33,6 +35,11 @@ class FormFragment : Fragment() {
     ): View? {
         _binding = FragmentFormBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        val fishType = resources.getStringArray(R.array.fishType)
+        val arrayAdapter = ArrayAdapter(view.context, R.layout.dropdown_item, fishType)
+        _binding!!.autoCompleteTextView.setAdapter(arrayAdapter)
+
 
         _binding!!.helpButton.setOnClickListener{ fishingInfo() }
         _binding!!.photoButton.setOnClickListener { takePhoto() }
@@ -66,6 +73,30 @@ class FormFragment : Fragment() {
     private fun sendData() {
         //ir al nuevo fragment FishingInfoFragment
         // findNavController().navigate(R.id.fishingInfoAction)
+
+        if(checkData()) {
+            Toast.makeText(activity, "CASI", Toast.LENGTH_LONG).show()
+
+        }
+        
+    }
+
+    private fun checkData(): Boolean {
+        if(_binding!!.autoCompleteTextView.text.toString() == "Tipo de pesca") {
+            Toast.makeText(activity, "Seleccione un tipo de pesca", Toast.LENGTH_LONG).show()
+            return false
+        }
+        else if(_binding!!.titleTextInput.text?.isEmpty() == true) {
+            Toast.makeText(activity, "Ingrese un título para la imagen", Toast.LENGTH_LONG).show()
+            return false
+        }
+        else if(_binding!!.captureImageView.getDrawable() == null) {
+            Toast.makeText(activity, "Capture una imagen", Toast.LENGTH_LONG).show()
+            return false
+        }
+        else {
+            return true
+        }
     }
 
 
