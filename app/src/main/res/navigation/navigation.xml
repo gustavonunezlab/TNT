@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_navigation"
-    app:startDestination="@id/fragment_main">
+    app:startDestination="@id/main_fragment">
     <!-- ...tags for fragments and activities here -->
 
     <fragment
-        android:id="@+id/fragment_main"
+        android:id="@+id/main_fragment"
         android:name="com.example.demo.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >

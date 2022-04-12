@@ -53,9 +53,10 @@ class FormFragment : Fragment() {
     }
 
     private fun fishingInfo() {
-    //ir al nuevo fragment FishingInfoFragment
+    //ir al nuevo fragment FishingInfoFragment, aun no esta creado
     // findNavController().navigate(R.id.fishingInfoAction)
     }
+
     private fun takePhoto() {
         val myFragment: Fragment = this
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -71,8 +72,8 @@ class FormFragment : Fragment() {
     }
 
     private fun sendData() {
-        //ir al nuevo fragment FishingInfoFragment
-        // findNavController().navigate(R.id.fishingInfoAction)
+        //ir al nuevo fragment FormDisplayFragment, aun no esta creado
+        // findNavController().navigate(R.id.formDisplayAction)
 
         if(checkData()) {
             Toast.makeText(activity, "CASI", Toast.LENGTH_LONG).show()
