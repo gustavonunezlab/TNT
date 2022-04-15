@@ -32,7 +32,7 @@ class DescriptionFishingTypeFragment : Fragment() {
         _binding = FragmentDescriptionFishingTypeBinding.inflate(inflater, container, false)
         val view = binding.root
 
-     arrFishingTypeDesc = resources.getStringArray(R.array.descriptionFishingType)
+        arrFishingTypeDesc = resources.getStringArray(R.array.descriptionFishingType)
         return view
     }
 
@@ -40,7 +40,6 @@ class DescriptionFishingTypeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 
     fun changeFishingType(index: Int) {
         fishingTypeindex = index

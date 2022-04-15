@@ -10,7 +10,7 @@ class FishingInfoActivity : AppCompatActivity(), Cordinadora {
     }
 
     override fun onChangeFishingType(index: Int) {
-        val fragment = supportFragmentManager.findFragmentById(R.id.fragment_fishing_description) as DescriptionFishingTypeFragment
+        val fragment = supportFragmentManager.findFragmentById(R.id.fragment_fishing_description2) as DescriptionFishingTypeFragment
         fragment.changeFishingType(index)
 
     }

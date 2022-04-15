@@ -13,12 +13,29 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/joinAction"
-            app:destination="@id/form_fragment" />
+            app:destination="@id/form_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/form_fragment"
         android:name="com.example.demo.FormFragment"
         android:label="fragment_form"
-        tools:layout="@layout/fragment_form" />
+        tools:layout="@layout/fragment_form" >
+        <action
+            android:id="@+id/fishingInfoActivityAction"
+            app:destination="@id/fishing_info_activity"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <activity
+        android:id="@+id/fishing_info_activity"
+        android:name="com.example.demo.FishingInfoActivity"
+        android:label="activity_fishing_info"
+        tools:layout="@layout/activity_fishing_info" />
 
 </navigation>

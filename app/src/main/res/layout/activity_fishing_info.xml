@@ -14,7 +14,7 @@
         android:layout_weight="1" />
 
     <fragment
-        android:id="@+id/fragment_fishing_description"
+        android:id="@+id/fragment_fishing_description2"
         android:name="com.example.demo.DescriptionFishingTypeFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
