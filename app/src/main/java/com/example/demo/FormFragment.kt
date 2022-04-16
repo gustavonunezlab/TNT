@@ -53,7 +53,7 @@ class FormFragment : Fragment() {
 
     private fun fishingInfo() {
     //ir al nuevo fragment FishingInfoFragment, aun no esta creado
-        findNavController().navigate(R.id.fishingInfoActivityAction)
+        findNavController().navigate(R.id.fishingInfoAction)
     }
 
     private fun takePhoto() {
@@ -71,14 +71,14 @@ class FormFragment : Fragment() {
     }
 
     private fun sendData() {
-        //ir al nuevo fragment FormDisplayFragment, aun no esta creado
-        // findNavController().navigate(R.id.formDisplayAction)
+      //  if(checkData()) {
+            //ir al nuevo fragment FormDisplayFragment. Pasar parámetros a mostrar
+            val title = _binding?.titleTextInput?.text.toString()
+            val fishingType = _binding?.autoCompleteTextView?.text.toString()
+            val action = FormFragmentDirections.formDisplayAction(title, fishingType)
 
-        if(checkData()) {
-            Toast.makeText(activity, "CASI", Toast.LENGTH_LONG).show()
-
-        }
-        
+            findNavController().navigate(action)
+      //  }
     }
 
     private fun checkData(): Boolean {
