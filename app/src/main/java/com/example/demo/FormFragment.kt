@@ -71,6 +71,7 @@ class FormFragment : Fragment() {
     }
 
     private fun sendData() {
+        // Comentada la condicion para realizar pruebas.
       //  if(checkData()) {
             //ir al nuevo fragment FormDisplayFragment. Pasar parámetros a mostrar
             val title = _binding?.titleTextInput?.text.toString()
@@ -98,6 +99,4 @@ class FormFragment : Fragment() {
             return true
         }
     }
-
-
 }

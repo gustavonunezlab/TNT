@@ -13,10 +13,7 @@ import com.example.demo.databinding.FragmentFishingTypeBinding
  * create an instance of this fragment.
  */
 class FishingTypeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var _binding: FragmentFishingTypeBinding? = null
-    // This property is only valid between onCreateView and
-// onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(

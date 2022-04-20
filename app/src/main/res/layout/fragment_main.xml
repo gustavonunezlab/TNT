@@ -27,7 +27,7 @@
         android:layout_marginStart="33dp"
         android:layout_marginTop="81dp"
         android:layout_marginEnd="33dp"
-        android:src="@mipmap/alogo"
+        android:src="@mipmap/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,6 +40,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="177dp"
         android:text="Bienvenido"
+        android:textColor="@color/black"
         android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

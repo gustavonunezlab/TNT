@@ -9,7 +9,6 @@
     <fragment
         android:id="@+id/main_fragment"
         android:name="com.example.demo.MainFragment"
-        android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/joinAction"
@@ -22,7 +21,6 @@
     <fragment
         android:id="@+id/form_fragment"
         android:name="com.example.demo.FormFragment"
-        android:label="fragment_form"
         tools:layout="@layout/fragment_form" >
         <action
             android:id="@+id/fishingInfoAction"
@@ -40,12 +38,10 @@
     <activity
         android:id="@+id/fishing_info_activity"
         android:name="com.example.demo.FishingInfoActivity"
-        android:label="activity_fishing_info"
         tools:layout="@layout/activity_fishing_info" />
     <fragment
         android:id="@+id/form_display_fragment"
         android:name="com.example.demo.FormDisplayFragment"
-        android:label="fragment_form_display"
         tools:layout="@layout/fragment_form_display">
         <argument
             android:name="title"
@@ -54,5 +50,9 @@
             android:name="fishingType"
             app:argType="string"/>
     </fragment>
+    <fragment
+        android:id="@+id/about_fragment"
+        android:name="com.example.demo.AboutFragment"
+        tools:layout="@layout/fragment_about" />
 
 </navigation>
