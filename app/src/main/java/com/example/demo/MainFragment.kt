@@ -25,7 +25,8 @@ class MainFragment : Fragment() {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        _binding!!.joinButton.setOnClickListener{joinApp()}
+        _binding!!.loginButton.setOnClickListener{ loginApp() }
+        _binding!!.registerTextView.setOnClickListener{ registerApp() }
         return view
     }
 
@@ -34,7 +35,11 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
-    private fun joinApp() {
-        findNavController().navigate(R.id.joinAction)
+    private fun loginApp() {
+        findNavController().navigate(R.id.loginAction)
+    }
+    private fun registerApp() {
+    //    findNavController().navigate(R.id.registerAction)
+        Toast.makeText(activity, "En construcción", Toast.LENGTH_LONG).show()
     }
 }

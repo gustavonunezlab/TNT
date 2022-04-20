@@ -6,6 +6,10 @@
         android:icon="@android:drawable/ic_menu_recent_history"
         android:title="Historial" />
     <item
+        android:id="@+id/fishing_info_activity"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="Tipos de pesca" />
+    <item
         android:id="@+id/about_fragment"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="Acerca de" />
