@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/historialFragment"
-        android:icon="@android:drawable/ic_menu_recent_history"
-        android:title="Historial" />
+        android:id="@+id/historial_fragment"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Mis reportes" />
     <item
         android:id="@+id/fishing_info_activity"
         android:icon="@android:drawable/ic_menu_help"
