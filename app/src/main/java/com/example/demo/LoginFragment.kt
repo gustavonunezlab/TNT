@@ -61,11 +61,11 @@ class LoginFragment : Fragment() {
         _binding?.loginFailedTextView?.visibility = View.VISIBLE
 
         var fadeOutAnimationObject = AlphaAnimation(1f, 0f)
-        fadeOutAnimationObject.setDuration(2500)
+        fadeOutAnimationObject.setDuration(2000)
         Handler(Looper.getMainLooper()).postDelayed({
             _binding?.loginFailedTextView?.startAnimation(fadeOutAnimationObject)
             _binding?.loginFailedTextView?.visibility = View.INVISIBLE
-        }, 2500)
+        }, 0)
 
     }
 }

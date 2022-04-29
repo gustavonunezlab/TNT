@@ -14,15 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.demo.databinding.FragmentFormBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
 const val REQUEST_IMAGE_CAPTURE = 1
-/**
- * A simple [Fragment] subclass.
- * Use the [FormFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class FormFragment : Fragment() {
 
     private var _binding: FragmentFormBinding? = null
@@ -52,7 +45,7 @@ class FormFragment : Fragment() {
     }
 
     private fun fishingInfo() {
-    //ir al nuevo fragment FishingInfoFragment, aun no esta creado
+    //ir al nuevo fragment FishingInfoFragment, aun no esta creado. Va a una activity
         findNavController().navigate(R.id.fishingInfoAction)
     }
 
