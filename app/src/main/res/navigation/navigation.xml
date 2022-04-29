@@ -12,11 +12,12 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/loginAction"
-            app:destination="@id/form_fragment"
+            app:destination="@id/login_fragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+
     </fragment>
     <fragment
         android:id="@+id/form_fragment"
@@ -58,5 +59,18 @@
         android:id="@+id/historial_fragment"
         android:name="com.example.demo.HistorialFragment"
         tools:layout="@layout/fragment_historial" />
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.example.demo.LoginFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/succesLoginAction"
+            app:destination="@id/form_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
 
 </navigation>
