@@ -27,6 +27,7 @@
         android:layout_marginStart="75dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="75dp"
+        android:hint="Usuario"
         android:ems="10"
         android:inputType="textPersonName"
         android:backgroundTint="@color/black"
@@ -49,13 +50,15 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextUserName" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/editTextPassword"
         android:layout_width="261dp"
         android:layout_height="43dp"
         android:layout_marginStart="75dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="75dp"
         android:backgroundTint="@color/black"
+        android:hint="Contraseña"
+        android:drawableRight="@drawable/visible_on"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +78,7 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <Button
         android:id="@+id/cancelButton"
