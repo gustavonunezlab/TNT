@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navGraphViewModels
 import com.example.demo.databinding.FragmentReportDisplayBinding
 import java.util.*
 
@@ -16,7 +18,7 @@ class ReportDisplayFragment : Fragment() {
 
     private var _binding: FragmentReportDisplayBinding? = null
     private val binding get() = _binding!!
-    private val args: ReportDisplayFragmentArgs by navArgs()
+    private val model: ReportViewModel by navGraphViewModels(R.id.app_navigation)
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
@@ -24,8 +26,9 @@ class ReportDisplayFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentReportDisplayBinding.inflate(inflater, container, false)
-        _binding!!.titleTextView.text = args.title
-        _binding!!.fishingTypeTextView.text = args.fishingType
+
+        _binding!!.titleTextView.text = model.title.value
+        _binding!!.fishingTypeTextView.text = model.fishingType.value
 
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
 

@@ -11,7 +11,9 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.demo.databinding.FragmentReportBinding
 
 const val REQUEST_IMAGE_CAPTURE = 1
@@ -20,6 +22,8 @@ class ReportFragment : Fragment() {
 
     private var _binding: FragmentReportBinding? = null
     private val binding get() = _binding!!
+
+    private val model: ReportViewModel by navGraphViewModels(R.id.app_navigation)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +37,7 @@ class ReportFragment : Fragment() {
         _binding!!.autoCompleteTextView.setAdapter(arrayAdapter)
 
 
-        _binding!!.helpButton.setOnClickListener{ fishingInfo() }
+        _binding!!.helpButton.setOnClickListener { fishingInfo() }
         _binding!!.photoButton.setOnClickListener { takePhoto() }
         _binding!!.sendButton.setOnClickListener { sendData() }
         return view
@@ -45,7 +49,7 @@ class ReportFragment : Fragment() {
     }
 
     private fun fishingInfo() {
-    //ir al nuevo fragment FishingInfoFragment, aun no esta creado. Va a una activity
+        //ir al nuevo fragment FishingInfoFragment, aun no esta creado. Va a una activity
         findNavController().navigate(R.id.fishingInfoAction)
     }
 
@@ -65,30 +69,31 @@ class ReportFragment : Fragment() {
 
     private fun sendData() {
         // Comentada la condicion para realizar pruebas.
-      //  if(checkData()) {
-            //ir al nuevo fragment ReportDisplayFragment. Pasar parámetros a mostrar
-            val title = _binding?.titleTextInput?.text.toString()
-            val fishingType = _binding?.autoCompleteTextView?.text.toString()
-            val action = ReportFragmentDirections.reportDisplayAction(title, fishingType)
+        //  if(checkData()) {
+        //ir al nuevo fragment ReportDisplayFragment. Pasar parámetros a mostrar
+        val title = _binding?.titleTextInput?.text.toString()
+        Toast.makeText(activity, title, Toast.LENGTH_LONG).show()
+        model.setTitle(title)
 
-            findNavController().navigate(action)
-      //  }
+        val fishingType = _binding?.autoCompleteTextView?.text.toString()
+        model.setFishingType(fishingType)
+        // val action = ReportFragmentDirections.reportDisplayAction(title, fishingType)
+
+        findNavController().navigate(R.id.reportDisplayAction)
+        //  }
     }
 
     private fun checkData(): Boolean {
-        if(_binding!!.autoCompleteTextView.text.toString() == "Tipo de pesca") {
+        if (_binding!!.autoCompleteTextView.text.toString() == "Tipo de pesca") {
             Toast.makeText(activity, "Seleccione un tipo de pesca", Toast.LENGTH_LONG).show()
             return false
-        }
-        else if(_binding!!.titleTextInput.text?.isEmpty() == true) {
+        } else if (_binding!!.titleTextInput.text?.isEmpty() == true) {
             Toast.makeText(activity, "Ingrese un título para la imagen", Toast.LENGTH_LONG).show()
             return false
-        }
-        else if(_binding!!.captureImageView.getDrawable() == null) {
+        } else if (_binding!!.captureImageView.getDrawable() == null) {
             Toast.makeText(activity, "Capture una imagen", Toast.LENGTH_LONG).show()
             return false
-        }
-        else {
+        } else {
             return true
         }
     }
