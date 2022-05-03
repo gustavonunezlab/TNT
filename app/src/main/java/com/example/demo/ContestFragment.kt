@@ -24,7 +24,6 @@ class ContestFragment : Fragment() {
         contestList.adapter = contestAdapter // (3)
         contestAdapter.contests = Contest.data // (4)
 
-
         val view = binding.root
         return view
     }

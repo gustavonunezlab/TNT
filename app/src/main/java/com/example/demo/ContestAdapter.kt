@@ -32,7 +32,6 @@ class ContestAdapter: RecyclerView.Adapter<ContestAdapter.ContestViewHolder>() {
         val description: TextView = view.findViewById(R.id.contest_description)
         val featuredImage: ImageView = view.findViewById(R.id.featured_image)
 
-
         fun bind(contest: Contest) {
             title.text = contest.title
             description.text = contest.description
