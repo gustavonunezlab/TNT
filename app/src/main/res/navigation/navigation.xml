@@ -78,7 +78,7 @@
         tools:layout="@layout/fragment_contest" />
     <fragment
         android:id="@+id/regulations_fragment"
-        android:name="com.example.demo.RegulationsFragment"
-        tools:layout="@layout/fragment_regulations" />
+        android:name="com.example.demo.RegulationFragment"
+        tools:layout="@layout/fragment_regulation" />
 
 </navigation>

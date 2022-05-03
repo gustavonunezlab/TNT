@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.demo.databinding.FragmentLoginBinding
 
-
 private var visible: Boolean = false
 
 class LoginFragment : Fragment() {
@@ -32,8 +31,8 @@ class LoginFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        _binding!!.loginButton.setOnClickListener{ checkLogin() }
-        _binding!!.cancelButton.setOnClickListener{ goBack() }
+        _binding!!.loginButton.setOnClickListener { checkLogin() }
+        _binding!!.cancelButton.setOnClickListener { goBack() }
 
         _binding!!.editTextPassword.setOnTouchListener(OnTouchListener { v, event ->
             val DRAWABLE_LEFT = 0
@@ -50,34 +49,41 @@ class LoginFragment : Fragment() {
             }
             false
         })
-
-
-
         return view
     }
 
     private fun turnVisibility() {
-        if(!visible) {
+        if (!visible) {
             _binding!!.editTextPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            _binding!!.editTextPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.visible_on, 0);
+            _binding!!.editTextPassword.setCompoundDrawablesWithIntrinsicBounds(
+                0,
+                0,
+                R.drawable.visible_on,
+                0
+            );
             visible = true;
-        }
-        else {
+        } else {
             _binding!!.editTextPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            _binding!!.editTextPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.visible_off, 0);
+            _binding!!.editTextPassword.setCompoundDrawablesWithIntrinsicBounds(
+                0,
+                0,
+                R.drawable.visible_off,
+                0
+            );
             visible = false;
         }
     }
 
-    private fun checkLogin () {
-        if(checkUser()) {
+    private fun checkLogin() {
+        if (checkUser()) {
             if (checkPassword()) {
                 findNavController().navigate(R.id.succesLoginAction)
             } else {
                 showErrorMsg()
             }
         } else {
-            showErrorMsg()        }
+            showErrorMsg()
+        }
     }
 
     private fun goBack() {

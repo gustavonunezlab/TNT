@@ -7,15 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.demo.databinding.FragmentDescriptionFishingTypeBinding
 
-// TODO: Rename parameter arguments, choose names that match
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DescriptionFishingTypeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DescriptionFishingTypeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     lateinit var arrFishingTypeDesc: Array<String>
     var fishingTypeindex = 0
 
