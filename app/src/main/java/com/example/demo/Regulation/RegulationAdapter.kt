@@ -1,10 +1,11 @@
-package com.example.demo
+package com.example.demo.Regulation
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.demo.R
 
 class RegulationAdapter: RecyclerView.Adapter<RegulationAdapter.RegulationViewHolder>() {
 
@@ -14,14 +15,14 @@ class RegulationAdapter: RecyclerView.Adapter<RegulationAdapter.RegulationViewHo
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RegulationAdapter.RegulationViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RegulationViewHolder {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.regulation_item, parent, false)
-        return RegulationAdapter.RegulationViewHolder(view)
+        return RegulationViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RegulationAdapter.RegulationViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RegulationViewHolder, position: Int) {
         val regulation = regulations[position]
         holder.bind(regulation)
     }

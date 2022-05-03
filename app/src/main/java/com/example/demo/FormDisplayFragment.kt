@@ -12,14 +12,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.demo.databinding.FragmentFormDisplayBinding
 import java.util.*
 
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FormDisplayFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-
 class FormDisplayFragment : Fragment() {
 
     private var _binding: FragmentFormDisplayBinding? = null

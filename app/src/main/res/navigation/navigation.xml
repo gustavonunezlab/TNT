@@ -57,7 +57,7 @@
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/historial_fragment"
-        android:name="com.example.demo.HistorialFragment"
+        android:name="com.example.demo.Historial.HistorialFragment"
         tools:layout="@layout/fragment_historial" />
 
     <fragment
@@ -74,11 +74,11 @@
     </fragment>
     <fragment
         android:id="@+id/contest_fragment"
-        android:name="com.example.demo.ContestFragment"
+        android:name="com.example.demo.Contest.ContestFragment"
         tools:layout="@layout/fragment_contest" />
     <fragment
         android:id="@+id/regulations_fragment"
-        android:name="com.example.demo.RegulationFragment"
+        android:name="com.example.demo.Regulation.RegulationFragment"
         tools:layout="@layout/fragment_regulation" />
 
 </navigation>

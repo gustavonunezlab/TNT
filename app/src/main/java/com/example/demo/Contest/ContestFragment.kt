@@ -1,4 +1,4 @@
-package com.example.demo
+package com.example.demo.Contest
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

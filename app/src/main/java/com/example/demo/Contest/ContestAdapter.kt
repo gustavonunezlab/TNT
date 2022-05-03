@@ -1,4 +1,4 @@
-package com.example.demo
+package com.example.demo.Contest
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.demo.R
 
 class ContestAdapter: RecyclerView.Adapter<ContestAdapter.ContestViewHolder>() {
 
@@ -15,14 +16,14 @@ class ContestAdapter: RecyclerView.Adapter<ContestAdapter.ContestViewHolder>() {
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContestAdapter.ContestViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContestViewHolder {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.contest_item, parent, false)
-        return ContestAdapter.ContestViewHolder(view)
+        return ContestViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ContestAdapter.ContestViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ContestViewHolder, position: Int) {
         val contest = contests[position]
         holder.bind(contest)
     }

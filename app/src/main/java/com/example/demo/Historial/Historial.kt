@@ -1,4 +1,6 @@
-package com.example.demo
+package com.example.demo.Historial
+
+import com.example.demo.R
 
 class Historial(
     val id: Int,

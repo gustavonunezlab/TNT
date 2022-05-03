@@ -1,4 +1,6 @@
-package com.example.demo
+package com.example.demo.Contest
+
+import com.example.demo.R
 
 class Contest(
     val id: Int,
