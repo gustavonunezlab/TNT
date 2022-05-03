@@ -110,7 +110,7 @@ class LoginFragment : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({
             _binding?.loginFailedTextView?.startAnimation(fadeOutAnimationObject)
             _binding?.loginFailedTextView?.visibility = View.INVISIBLE
-        }, 0)
+        }, 1000)
 
     }
 }

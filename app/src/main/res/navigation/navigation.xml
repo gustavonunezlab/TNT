@@ -20,9 +20,9 @@
 
     </fragment>
     <fragment
-        android:id="@+id/form_fragment"
-        android:name="com.example.demo.FormFragment"
-        tools:layout="@layout/fragment_form" >
+        android:id="@+id/report_fragment"
+        android:name="com.example.demo.ReportFragment"
+        tools:layout="@layout/fragment_report" >
         <action
             android:id="@+id/fishingInfoAction"
             app:destination="@id/fishing_info_activity"
@@ -31,8 +31,8 @@
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/formDisplayAction"
-            app:destination="@id/form_display_fragment">
+            android:id="@+id/reportDisplayAction"
+            app:destination="@id/report_display_fragment">
         </action>
 
     </fragment>
@@ -41,9 +41,9 @@
         android:name="com.example.demo.FishingInfoActivity"
         tools:layout="@layout/activity_fishing_info" />
     <fragment
-        android:id="@+id/form_display_fragment"
-        android:name="com.example.demo.FormDisplayFragment"
-        tools:layout="@layout/fragment_form_display">
+        android:id="@+id/report_display_fragment"
+        android:name="com.example.demo.ReportDisplayFragment"
+        tools:layout="@layout/fragment_report_display">
         <argument
             android:name="title"
             app:argType="string"/>
@@ -66,7 +66,7 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/succesLoginAction"
-            app:destination="@id/form_fragment"
+            app:destination="@id/report_fragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"

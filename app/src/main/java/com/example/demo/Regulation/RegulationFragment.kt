@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.databinding.FragmentRegulationBinding
 
-
 class RegulationFragment : Fragment() {
 
     private var _binding: FragmentRegulationBinding? = null

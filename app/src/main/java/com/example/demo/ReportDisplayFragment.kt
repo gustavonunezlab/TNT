@@ -9,21 +9,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.navArgs
-import com.example.demo.databinding.FragmentFormDisplayBinding
+import com.example.demo.databinding.FragmentReportDisplayBinding
 import java.util.*
 
-class FormDisplayFragment : Fragment() {
+class ReportDisplayFragment : Fragment() {
 
-    private var _binding: FragmentFormDisplayBinding? = null
+    private var _binding: FragmentReportDisplayBinding? = null
     private val binding get() = _binding!!
-    private val args: FormDisplayFragmentArgs by navArgs()
+    private val args: ReportDisplayFragmentArgs by navArgs()
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentFormDisplayBinding.inflate(inflater, container, false)
+        _binding = FragmentReportDisplayBinding.inflate(inflater, container, false)
         _binding!!.titleTextView.text = args.title
         _binding!!.fishingTypeTextView.text = args.fishingType
 

@@ -12,20 +12,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.demo.databinding.FragmentFormBinding
+import com.example.demo.databinding.FragmentReportBinding
 
 const val REQUEST_IMAGE_CAPTURE = 1
 
-class FormFragment : Fragment() {
+class ReportFragment : Fragment() {
 
-    private var _binding: FragmentFormBinding? = null
+    private var _binding: FragmentReportBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentFormBinding.inflate(inflater, container, false)
+        _binding = FragmentReportBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val fishType = resources.getStringArray(R.array.fishType)
@@ -66,10 +66,10 @@ class FormFragment : Fragment() {
     private fun sendData() {
         // Comentada la condicion para realizar pruebas.
       //  if(checkData()) {
-            //ir al nuevo fragment FormDisplayFragment. Pasar parámetros a mostrar
+            //ir al nuevo fragment ReportDisplayFragment. Pasar parámetros a mostrar
             val title = _binding?.titleTextInput?.text.toString()
             val fishingType = _binding?.autoCompleteTextView?.text.toString()
-            val action = FormFragmentDirections.formDisplayAction(title, fishingType)
+            val action = ReportFragmentDirections.reportDisplayAction(title, fishingType)
 
             findNavController().navigate(action)
       //  }
