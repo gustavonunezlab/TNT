@@ -72,5 +72,13 @@
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
+    <fragment
+        android:id="@+id/contest_fragment"
+        android:name="com.example.demo.ContestFragment"
+        tools:layout="@layout/fragment_contest" />
+    <fragment
+        android:id="@+id/regulations_fragment"
+        android:name="com.example.demo.RegulationsFragment"
+        tools:layout="@layout/fragment_regulations" />
 
 </navigation>

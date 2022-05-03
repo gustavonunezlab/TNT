@@ -22,10 +22,10 @@ class HistorialFragment : Fragment() {
 
         _binding = FragmentHistorialBinding.inflate(inflater, container, false)
 
-        val articleList: RecyclerView = binding.list
-        val articleAdapter = ArticleAdapter() // (2)
-        articleList.adapter = articleAdapter // (3)
-        articleAdapter.articles = Article.data // (4)
+        val historialList: RecyclerView = binding.list
+        val historialAdapter = HistorialAdapter() // (2)
+        historialList.adapter = historialAdapter // (3)
+        historialAdapter.historials = Historial.data // (4)
 
 
         val view = binding.root
