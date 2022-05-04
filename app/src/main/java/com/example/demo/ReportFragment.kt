@@ -72,7 +72,6 @@ class ReportFragment : Fragment() {
         //  if(checkData()) {
         //ir al nuevo fragment ReportDisplayFragment. Pasar parámetros a mostrar
         val title = _binding?.titleTextInput?.text.toString()
-        Toast.makeText(activity, title, Toast.LENGTH_LONG).show()
         model.setTitle(title)
 
         val fishingType = _binding?.autoCompleteTextView?.text.toString()
