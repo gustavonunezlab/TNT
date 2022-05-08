@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import com.example.demo.databinding.FragmentReportDisplayBinding
@@ -34,9 +36,20 @@ class ReportDisplayFragment : Fragment() {
 
         val currentDate = sdf.format(Date())
         _binding!!.dateTextView.text = currentDate
+
+        model.setDate(currentDate)
+
+        val image = model.image.value
+        _binding!!.captureImageView.setImageBitmap(image)
+
+        _binding!!.updateButton.setOnClickListener { updateReport() }
+
         val view = binding.root
         return view
     }
 
+    private fun updateReport() {
+        findNavController().popBackStack()
+    }
 
 }

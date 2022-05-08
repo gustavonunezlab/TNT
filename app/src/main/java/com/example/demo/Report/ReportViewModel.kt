@@ -1,8 +1,11 @@
 package com.example.demo
 
+import android.graphics.Bitmap
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.util.*
 
 class ReportViewModel : ViewModel() {
 
@@ -26,5 +29,15 @@ class ReportViewModel : ViewModel() {
     val date: LiveData<String>
         get() = _date
 
+    fun setDate(date: String){
+        _date.value = date
+    }
 
+    private val _image = MutableLiveData<Bitmap>()
+    val image: LiveData<Bitmap>
+        get() = _image
+
+    fun setImage(image: Bitmap) {
+        _image.value = image
+    }
 }

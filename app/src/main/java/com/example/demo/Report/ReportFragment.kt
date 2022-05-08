@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.demo.databinding.FragmentReportBinding
@@ -39,7 +38,7 @@ class ReportFragment : Fragment() {
 
         _binding!!.helpButton.setOnClickListener { fishingInfo() }
         _binding!!.photoButton.setOnClickListener { takePhoto() }
-        _binding!!.sendButton.setOnClickListener { sendData() }
+        _binding!!.sendButton.setOnClickListener { sendReport() }
         return view
     }
 
@@ -63,20 +62,19 @@ class ReportFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
+            model.setImage(imageBitmap)
             _binding!!.captureImageView.setImageBitmap(imageBitmap)
         }
     }
 
-    private fun sendData() {
+    private fun sendReport() {
         // Comentada la condicion para realizar pruebas.
         //  if(checkData()) {
-        //ir al nuevo fragment ReportDisplayFragment. Pasar parámetros a mostrar
         val title = _binding?.titleTextInput?.text.toString()
         model.setTitle(title)
 
         val fishingType = _binding?.autoCompleteTextView?.text.toString()
         model.setFishingType(fishingType)
-        // val action = ReportFragmentDirections.reportDisplayAction(title, fishingType)
 
         findNavController().navigate(R.id.reportDisplayAction)
         //  }
