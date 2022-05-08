@@ -39,7 +39,7 @@ class HistorialAdapter(
         fun bind(historial: Historial) {
             itemView.setOnClickListener { itemClickListener.onItemClick(historial) }
             title.text = historial.title
-            description.text = historial.description
+            description.text = historial.fishingType
             featuredImage.setImageResource(historial.featuredImage)
             featuredImage.scaleType
 

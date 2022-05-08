@@ -14,7 +14,6 @@ import com.example.demo.R
 import com.example.demo.ReportViewModel
 import com.example.demo.databinding.FragmentHistorialBinding
 
-
 class HistorialFragment : Fragment(), HistorialAdapter.OnReportClickListener {
 
     private val model: ReportViewModel by navGraphViewModels(R.id.app_navigation)
@@ -40,7 +39,7 @@ class HistorialFragment : Fragment(), HistorialAdapter.OnReportClickListener {
 
     override fun onItemClick(historial: Historial) {
         model.setTitle(historial.title)
-
+        model.setFishingType(historial.fishingType)
         val bitmap = BitmapFactory.decodeResource(resources, historial.featuredImage)
 
         model.setImage(bitmap)

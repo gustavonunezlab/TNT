@@ -6,9 +6,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.demo.Historial.Historial
+import com.example.demo.Historial.HistorialAdapter
 import com.example.demo.R
 
-class ContestAdapter: RecyclerView.Adapter<ContestAdapter.ContestViewHolder>() {
+class ContestAdapter(
+    private val itemClickListener: OnContestClickListener
+): RecyclerView.Adapter<ContestAdapter.ContestViewHolder>() {
 
     var contests = listOf<Contest>()
         set(value) {
@@ -28,12 +32,13 @@ class ContestAdapter: RecyclerView.Adapter<ContestAdapter.ContestViewHolder>() {
         holder.bind(contest)
     }
 
-    class ContestViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ContestViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.contest_title)
         val description: TextView = view.findViewById(R.id.contest_description)
         val featuredImage: ImageView = view.findViewById(R.id.featured_image)
 
         fun bind(contest: Contest) {
+            itemView.setOnClickListener { itemClickListener.onItemClick(contest) }
             title.text = contest.title
             description.text = contest.description
             featuredImage.setImageResource(contest.featuredImage)
@@ -42,4 +47,8 @@ class ContestAdapter: RecyclerView.Adapter<ContestAdapter.ContestViewHolder>() {
     }
 
     override fun getItemCount() = contests.size
+
+    interface OnContestClickListener {
+        fun onItemClick(contest: Contest)
+    }
 }

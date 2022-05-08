@@ -5,7 +5,7 @@ import com.example.demo.R
 class Historial(
     val id: Int,
     val title: String,
-    val description: String,
+    val fishingType: String,
     val featuredImage: Int
 ) {
     companion object {
@@ -14,61 +14,61 @@ class Historial(
                 Historial(
                     1,
                     "Dorados",
-                    "Pesca embarcado en Lago Puelo",
+                    "Pesca deportiva",
                     R.drawable.pez1
                 ),
                 Historial(
                     2,
                     "Peces de agua dulce",
-                    "Incursiona en el mundo de la pesca en agua dulce",
+                    "Pesca científica",
                     R.drawable.pez2
                 ),
                 Historial(
                     3,
                     "Fondo del mar",
-                    "¿Qué misterios esconde el fondo del mar?",
+                    "Pesca comercial",
                     R.drawable.pez3
                 ),
                 Historial(
                     4,
                     "¡Qué boquita!",
-                    "Una de las especias más raras",
+                    "Pesca deportiva",
                     R.drawable.pez4
                 ),
                 Historial(
                     5,
                     "Probando encarnar con anchoa",
-                    "Resultado de variar la carnada en el Golfo Nuevo",
+                    "Pesca comercial",
                     R.drawable.pez5
                 ),
                 Historial(
                     6,
                     "Terrible presa!",
-                    "Captura realizada desde la playa, Puerto Pirámides",
+                    "Pesca deportiva",
                     R.drawable.pez6
                 ),
                 Historial(
                     7,
                     "Dibujo de mi sobrina",
-                    "Pala vosh tío",
+                    "Pesca turística",
                     R.drawable.pez7
                 ),
                 Historial(
                     8,
                     "Uno escondido",
-                    "Especie vista al bucear en las playas de Puerto Madryn",
+                    "Pesca turística",
                     R.drawable.pez8
                 ),
                 Historial(
                     9,
                     "Otro dorado",
-                    "Captura del 2019 en el Delta del Tigre",
+                    "Pesca turística",
                     R.drawable.pez9
                 ),
                 Historial(
                     10,
                     "Primer Surubí",
-                    "Captura realizada en los Rápidos del Paraná",
+                    "Pesca turística",
                     R.drawable.pez10
                 )
             )
