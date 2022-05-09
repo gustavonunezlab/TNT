@@ -1,13 +1,17 @@
 package com.example.demo
 
+import android.app.Application
 import android.graphics.Bitmap
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.example.demo.database.Report
+import com.example.demo.database.ReportRoomDatabase
+import com.example.demo.database.ReportsRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
-class ReportViewModel : ViewModel() {
+class ReportViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _title = MutableLiveData<String>()
     val title: LiveData<String>
@@ -39,5 +43,17 @@ class ReportViewModel : ViewModel() {
 
     fun setImage(image: Bitmap) {
         _image.value = image
+    }
+
+    private val repository: ReportsRepository
+    private val allReports: LiveData<List<Report>>
+    init {
+        val reportsDao = ReportRoomDatabase
+            .getDatabase(application, viewModelScope).reportDao()
+        repository = ReportsRepository(reportsDao)
+        allReports = repository.allReports
+    }
+    fun insert(report: Report) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insertReport(report)
     }
 }
