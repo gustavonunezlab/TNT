@@ -14,6 +14,7 @@ data class Report (
     var fishing_type: String,
     @ColumnInfo(name = "date")
     var date: String,
+
   //  @ColumnInfo(name = "image")
 //    var image: Bitmap?
 )

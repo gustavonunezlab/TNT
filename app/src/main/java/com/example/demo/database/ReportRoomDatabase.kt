@@ -1,6 +1,7 @@
 package com.example.demo.database
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -10,9 +11,11 @@ import kotlinx.coroutines.launch
 
 @Database(entities = arrayOf(Report::class), version = 1, exportSchema = false)
 public abstract class ReportRoomDatabase : RoomDatabase() {
+
     abstract fun reportDao(): ReportDAO
 
     companion object {
+
 
         @Volatile
         private var INSTANCIA: ReportRoomDatabase? = null
@@ -52,6 +55,7 @@ public abstract class ReportRoomDatabase : RoomDatabase() {
             }
 
             suspend fun populateDatabase(reportDAO: ReportDAO) {
+                Log.i("populanding", "cargo?")
                 reportDAO.deleteAll()
                 val report = Report(1, "Pesca loca", "Pesca deportiva", "Real Madryn")
                 reportDAO.insertReport(report)

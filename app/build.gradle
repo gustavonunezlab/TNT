@@ -5,6 +5,7 @@ apply plugin: 'kotlin-kapt' /* procesador de anotaciones */
 
 android {
     compileSdk 32
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.example.demo"

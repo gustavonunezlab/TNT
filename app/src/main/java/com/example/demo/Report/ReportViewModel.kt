@@ -2,6 +2,7 @@ package com.example.demo
 
 import android.app.Application
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.lifecycle.*
 import com.example.demo.database.Report
@@ -45,9 +46,10 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
         _image.value = image
     }
 
-    private val repository: ReportsRepository
-    private val allReports: LiveData<List<Report>>
+    val repository: ReportsRepository
+    val allReports: LiveData<List<Report>>
     init {
+        Log.i("ReportViewModel", "cargo?")
         val reportsDao = ReportRoomDatabase
             .getDatabase(application, viewModelScope).reportDao()
         repository = ReportsRepository(reportsDao)
