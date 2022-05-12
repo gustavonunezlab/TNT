@@ -76,6 +76,8 @@ class ReportFragment : Fragment() {
         val fishingType = _binding?.autoCompleteTextView?.text.toString()
         model.setFishingType(fishingType)
 
+        //TODO: Añadair datepicker creo que sería la mejor opción. Luego model.setdate el valor del date picker.
+
         findNavController().navigate(R.id.reportDisplayAction)
         //  }
     }

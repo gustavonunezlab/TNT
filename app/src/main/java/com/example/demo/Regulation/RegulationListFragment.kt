@@ -6,23 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.demo.databinding.FragmentRegulationBinding
+import com.example.demo.databinding.FragmentRegulationListBinding
 
-class RegulationFragment : Fragment() {
+class RegulationListFragment : Fragment() {
 
-    private var _binding: FragmentRegulationBinding? = null
+    private var _binding: FragmentRegulationListBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentRegulationBinding.inflate(inflater, container, false)
+        _binding = FragmentRegulationListBinding.inflate(inflater, container, false)
 
         val regulationList: RecyclerView = binding.list
-        val regulationAdapter = RegulationAdapter() // (2)
-        regulationList.adapter = regulationAdapter // (3)
-        regulationAdapter.regulations = Regulation.data // (4)
+        val regulationListAdapter = RegulationListAdapter() // (2)
+        regulationList.adapter = regulationListAdapter // (3)
+        regulationListAdapter.regulations = Regulation.data // (4)
 
         val view = binding.root
         return view

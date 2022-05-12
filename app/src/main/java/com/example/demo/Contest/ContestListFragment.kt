@@ -10,27 +10,25 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.example.demo.Historial.Historial
 import com.example.demo.R
-import com.example.demo.ReportViewModel
-import com.example.demo.databinding.FragmentContestBinding
+import com.example.demo.databinding.FragmentContestListBinding
 
-class ContestFragment : Fragment(), ContestAdapter.OnContestClickListener {
+class ContestListFragment : Fragment(), ContestListAdapter.OnContestClickListener {
 
     private val model: ContestViewModel by navGraphViewModels(R.id.app_navigation)
-    private var _binding: FragmentContestBinding? = null
+    private var _binding: FragmentContestListBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentContestBinding.inflate(inflater, container, false)
+        _binding = FragmentContestListBinding.inflate(inflater, container, false)
 
         val contestList: RecyclerView = binding.list
-        val contestAdapter = ContestAdapter(this) // (2)
-        contestList.adapter = contestAdapter // (3)
-        contestAdapter.contests = Contest.data // (4)
+        val contestListAdapter = ContestListAdapter(this) // (2)
+        contestList.adapter = contestListAdapter // (3)
+        contestListAdapter.contests = Contest.data // (4)
 
         contestList.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
 

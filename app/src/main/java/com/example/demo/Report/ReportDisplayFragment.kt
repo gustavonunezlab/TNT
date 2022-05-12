@@ -35,7 +35,7 @@ class ReportDisplayFragment : Fragment() {
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
 
         val currentDate = sdf.format(Date())
-        _binding!!.dateTextView.text = currentDate
+        _binding!!.dateTextView.text = model.date.value
 
         model.setDate(currentDate)
 

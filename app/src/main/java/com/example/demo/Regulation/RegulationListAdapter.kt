@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.R
 
-class RegulationAdapter: RecyclerView.Adapter<RegulationAdapter.RegulationViewHolder>() {
+class RegulationListAdapter: RecyclerView.Adapter<RegulationListAdapter.RegulationViewHolder>() {
 
     var regulations = listOf<Regulation>()
         set(value) {

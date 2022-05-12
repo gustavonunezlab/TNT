@@ -56,8 +56,8 @@
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/historial_fragment"
-        android:name="com.example.demo.Historial.HistorialFragment"
-        tools:layout="@layout/fragment_historial" />
+        android:name="com.example.demo.Report.ReportListFragment"
+        tools:layout="@layout/fragment_report_list" />
 
     <fragment
         android:id="@+id/login_fragment"
@@ -73,12 +73,12 @@
     </fragment>
     <fragment
         android:id="@+id/contest_fragment"
-        android:name="com.example.demo.Contest.ContestFragment"
-        tools:layout="@layout/fragment_contest" />
+        android:name="com.example.demo.Contest.ContestListFragment"
+        tools:layout="@layout/fragment_contest_list" />
     <fragment
         android:id="@+id/regulations_fragment"
-        android:name="com.example.demo.Regulation.RegulationFragment"
-        tools:layout="@layout/fragment_regulation" />
+        android:name="com.example.demo.Regulation.RegulationListFragment"
+        tools:layout="@layout/fragment_regulation_list" />
     <fragment
         android:id="@+id/contest_display_fragment"
         android:name="com.example.demo.Contest.ContestDisplayFragment"

@@ -1,11 +1,12 @@
 package com.example.demo.database
 
+import android.graphics.Bitmap
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "report_table")
-data class Report (
+data class Report(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
     @ColumnInfo(name = "title")
@@ -14,7 +15,6 @@ data class Report (
     var fishing_type: String,
     @ColumnInfo(name = "date")
     var date: String,
-
-  //  @ColumnInfo(name = "image")
-//    var image: Bitmap?
+    //@ColumnInfo(name = "featured_image")
+    //var featured_image: Bitmap,
 )

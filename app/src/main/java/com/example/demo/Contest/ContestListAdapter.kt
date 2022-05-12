@@ -6,13 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.demo.Historial.Historial
-import com.example.demo.Historial.HistorialAdapter
 import com.example.demo.R
 
-class ContestAdapter(
+class ContestListAdapter(
     private val itemClickListener: OnContestClickListener
-): RecyclerView.Adapter<ContestAdapter.ContestViewHolder>() {
+): RecyclerView.Adapter<ContestListAdapter.ContestViewHolder>() {
 
     var contests = listOf<Contest>()
         set(value) {
