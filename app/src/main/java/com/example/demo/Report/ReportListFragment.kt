@@ -19,7 +19,6 @@ import com.example.demo.databinding.FragmentReportListBinding
 
 class ReportListFragment : Fragment(), ReportListAdapter.OnReportClickListener {
 
-    // private lateinit var reportViewModel: ReportViewModel
     private val reportViewModel: ReportViewModel by navGraphViewModels(R.id.app_navigation)//by navGraphViewModels(R.id.app_navigation)
     private var _binding: FragmentReportListBinding? = null
     private val binding get() = _binding!!

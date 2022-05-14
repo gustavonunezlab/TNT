@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
+import com.example.demo.database.Report
 import com.example.demo.databinding.FragmentReportDisplayBinding
 import java.util.*
 
@@ -31,13 +32,7 @@ class ReportDisplayFragment : Fragment() {
 
         _binding!!.titleTextView.text = model.title.value
         _binding!!.fishingTypeTextView.text = model.fishingType.value
-
-        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
-
-        val currentDate = sdf.format(Date())
         _binding!!.dateTextView.text = model.date.value
-
-        model.setDate(currentDate)
 
         val image = model.image.value
         _binding!!.captureImageView.setImageBitmap(image)

@@ -7,8 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "report_table")
 data class Report(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0,
+
     @ColumnInfo(name = "title")
     var title: String,
     @ColumnInfo(name = "fishing_type")
@@ -17,4 +16,7 @@ data class Report(
     var date: String,
     //@ColumnInfo(name = "featured_image")
     //var featured_image: Bitmap,
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+}

@@ -2,6 +2,8 @@ package com.example.demo
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.icu.text.SimpleDateFormat
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -9,11 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.demo.database.Report
 import com.example.demo.databinding.FragmentReportBinding
+import java.util.*
 
 const val REQUEST_IMAGE_CAPTURE = 1
 
@@ -24,6 +29,7 @@ class ReportFragment : Fragment() {
 
     private val model: ReportViewModel by navGraphViewModels(R.id.app_navigation)
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +54,6 @@ class ReportFragment : Fragment() {
     }
 
     private fun fishingInfo() {
-        //ir al nuevo fragment FishingInfoFragment, aun no esta creado. Va a una activity
         findNavController().navigate(R.id.fishingInfoAction)
     }
 
@@ -67,6 +72,7 @@ class ReportFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun sendReport() {
         // Comentada la condicion para realizar pruebas.
         //  if(checkData()) {
@@ -76,7 +82,12 @@ class ReportFragment : Fragment() {
         val fishingType = _binding?.autoCompleteTextView?.text.toString()
         model.setFishingType(fishingType)
 
-        //TODO: Añadair datepicker creo que sería la mejor opción. Luego model.setdate el valor del date picker.
+        val sdf = SimpleDateFormat("dd/M/yyyy")
+        val currentDate = sdf.format(Date())
+        model.setDate(currentDate)
+
+        val report = Report(model.title.value!!, model.fishingType.value!!, model.date.value!!)
+        model.insert(report)
 
         findNavController().navigate(R.id.reportDisplayAction)
         //  }

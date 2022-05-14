@@ -60,19 +60,19 @@ public abstract class ReportRoomDatabase : RoomDatabase() {
 
             suspend fun populateDatabase(reportDAO: ReportDAO) {
                 Log.i("populanding", "cargo?")
+                if (reportDAO.getCount() == 0){
                 reportDAO.deleteAll()
                 val report =
-                    Report(1, "Pesca loca", "Pesca deportiva", "Real Madryn")
+                    Report("Pesca loca", "Pesca deportiva", "09/07/1816")
                 reportDAO.insertReport(report)
                 reportDAO.insertReport(
                     Report(
-                        2,
                         "El sacrificio del tiburón",
                         "Pesca científica",
-                        "UNPSJB Trelew"
+                        "25/05/1810"
                     )
                 )
-            }
+            }}
         }
     }
 }
