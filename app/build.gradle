@@ -5,7 +5,6 @@ apply plugin: 'kotlin-kapt' /* procesador de anotaciones */
 
 android {
     compileSdk 32
-    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.example.demo"
@@ -23,11 +22,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/atomicfu.kotlin_module']
+        }
+    }
 
     /* excluir el modulo de funciones atomicas del paquete y prevenir warnings */
-    packagingOptions {
-        exclude 'META-INF/atomicfu.kotlin_module'
-    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -45,6 +46,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.example.demo'
 
 
 }

@@ -38,4 +38,12 @@ class ContestViewModel: ViewModel() {
     fun setImage(image: Bitmap) {
         _image.value = image
     }
+
+    private val _termsAndConditions = MutableLiveData<String>()
+    val termsAndConditions: LiveData<String>
+        get() = _termsAndConditions
+
+    fun setTermsAndConditions(termsAndConditions: String) {
+        _termsAndConditions.value = termsAndConditions
+    }
 }

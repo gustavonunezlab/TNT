@@ -28,6 +28,7 @@ class ContestDisplayFragment : Fragment() {
         _binding!!.titleTextView.text = model.title.value
         _binding!!.descriptionTextView.text = model.description.value
         _binding!!.dateTextView.text = model.date.value
+        _binding!!.termsAndConditionsTextView.text = model.termsAndConditions.value
 
         val image = model.image.value
         _binding!!.captureImageView.setImageBitmap(image)

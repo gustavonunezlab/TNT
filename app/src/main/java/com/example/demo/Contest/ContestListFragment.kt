@@ -40,6 +40,7 @@ class ContestListFragment : Fragment(), ContestListAdapter.OnContestClickListene
         model.setTitle(contest.title)
         model.setDescription(contest.description)
         model.setDate(contest.date)
+        model.setTermsAndConditions(contest.termsAndConditions)
 
         val bitmap = BitmapFactory.decodeResource(resources, contest.featuredImage)
         model.setImage(bitmap)
