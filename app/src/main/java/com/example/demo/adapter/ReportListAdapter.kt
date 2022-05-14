@@ -1,6 +1,5 @@
-package com.example.demo.Report
+package com.example.demo.adapter
 
-import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.R
-import com.example.demo.database.Report
+import com.example.demo.model.Report
 
 class ReportListAdapter(
     private val itemClickListener: OnReportClickListener

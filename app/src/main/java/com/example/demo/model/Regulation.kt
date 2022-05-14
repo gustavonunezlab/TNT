@@ -1,4 +1,4 @@
-package com.example.demo.Regulation
+package com.example.demo.model
 
 class Regulation (
     val id: Int,

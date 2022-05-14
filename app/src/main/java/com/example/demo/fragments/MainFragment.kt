@@ -1,4 +1,4 @@
-package com.example.demo
+package com.example.demo.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
-import androidx.navigation.navOptions
-import com.example.demo.Report.ReportListAdapter
-import com.example.demo.database.Report
+import com.example.demo.R
+import com.example.demo.adapter.ReportListAdapter
+import com.example.demo.viewModel.ReportViewModel
+import com.example.demo.model.Report
 
 import com.example.demo.databinding.FragmentMainBinding
 

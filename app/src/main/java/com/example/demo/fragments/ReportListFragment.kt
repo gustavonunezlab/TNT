@@ -1,8 +1,6 @@
-package com.example.demo.Report
+package com.example.demo.fragments
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.provider.MediaStore.Images.Media.getBitmap
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +11,9 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.R
-import com.example.demo.ReportViewModel
-import com.example.demo.database.Report
+import com.example.demo.adapter.ReportListAdapter
+import com.example.demo.viewModel.ReportViewModel
+import com.example.demo.model.Report
 import com.example.demo.databinding.FragmentReportListBinding
 
 class ReportListFragment : Fragment(), ReportListAdapter.OnReportClickListener {

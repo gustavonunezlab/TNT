@@ -1,4 +1,4 @@
-package com.example.demo.Contest
+package com.example.demo.viewModel
 
 import android.graphics.Bitmap
 import androidx.lifecycle.LiveData

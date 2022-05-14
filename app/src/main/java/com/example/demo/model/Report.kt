@@ -1,4 +1,4 @@
-package com.example.demo.database
+package com.example.demo.model
 
 import android.graphics.Bitmap
 import androidx.room.ColumnInfo

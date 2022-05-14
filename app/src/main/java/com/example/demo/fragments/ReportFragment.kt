@@ -1,4 +1,4 @@
-package com.example.demo
+package com.example.demo.fragments
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -16,7 +16,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
-import com.example.demo.database.Report
+import com.example.demo.R
+import com.example.demo.viewModel.ReportViewModel
+import com.example.demo.model.Report
 import com.example.demo.databinding.FragmentReportBinding
 import java.util.*
 
@@ -39,9 +41,8 @@ class ReportFragment : Fragment() {
 
         val fishType = resources.getStringArray(R.array.fishType)
         val arrayAdapter = ArrayAdapter(view.context, R.layout.dropdown_item, fishType)
+
         _binding!!.autoCompleteTextView.setAdapter(arrayAdapter)
-
-
         _binding!!.helpButton.setOnClickListener { fishingInfo() }
         _binding!!.photoButton.setOnClickListener { takePhoto() }
         _binding!!.sendButton.setOnClickListener { sendReport() }

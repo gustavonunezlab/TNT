@@ -1,4 +1,4 @@
-package com.example.demo.Contest
+package com.example.demo.fragments
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -10,6 +10,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.example.demo.model.Contest
+import com.example.demo.adapter.ContestListAdapter
+import com.example.demo.viewModel.ContestViewModel
 import com.example.demo.R
 import com.example.demo.databinding.FragmentContestListBinding
 

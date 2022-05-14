@@ -2,6 +2,7 @@ package com.example.demo.database
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import com.example.demo.model.Report
 
 class ReportsRepository(private val reportDao: ReportDAO) {
 

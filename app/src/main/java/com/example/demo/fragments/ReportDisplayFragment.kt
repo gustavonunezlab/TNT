@@ -1,21 +1,17 @@
-package com.example.demo
+package com.example.demo.fragments
 
-import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
-import com.example.demo.database.Report
+import com.example.demo.R
+import com.example.demo.viewModel.ReportViewModel
 import com.example.demo.databinding.FragmentReportDisplayBinding
-import java.util.*
 
 class ReportDisplayFragment : Fragment() {
 
@@ -44,7 +40,7 @@ class ReportDisplayFragment : Fragment() {
     }
 
     private fun updateReport() {
-        findNavController().popBackStack()
+        findNavController().navigate(R.id.report_fragment)
     }
 
 }

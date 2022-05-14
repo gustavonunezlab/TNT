@@ -13,10 +13,7 @@
         android:id="@+id/contest_fragment"
         android:icon="@android:drawable/ic_menu_today"
         android:title="Concursos" />
-    <item
-        android:id="@+id/historial_fragment"
-        android:icon="@android:drawable/ic_menu_agenda"
-        android:title="Mis reportes" />
+
     <item
         android:id="@+id/about_fragment"
         android:icon="@android:drawable/ic_menu_info_details"

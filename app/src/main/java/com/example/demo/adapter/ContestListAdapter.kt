@@ -1,4 +1,4 @@
-package com.example.demo.Contest
+package com.example.demo.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.R
+import com.example.demo.model.Contest
 
 class ContestListAdapter(
     private val itemClickListener: OnContestClickListener

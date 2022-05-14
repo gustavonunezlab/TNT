@@ -1,4 +1,4 @@
-package com.example.demo.Regulation
+package com.example.demo.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.demo.model.Regulation
+import com.example.demo.adapter.RegulationListAdapter
 import com.example.demo.databinding.FragmentRegulationListBinding
 
 class RegulationListFragment : Fragment() {

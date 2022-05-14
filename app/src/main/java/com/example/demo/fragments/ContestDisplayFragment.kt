@@ -1,6 +1,5 @@
-package com.example.demo.Contest
+package com.example.demo.fragments
 
-import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,9 +9,9 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.demo.viewModel.ContestViewModel
 import com.example.demo.R
 import com.example.demo.databinding.FragmentContestDisplayBinding
-import java.util.*
 
 class ContestDisplayFragment : Fragment() {
     private var _binding: FragmentContestDisplayBinding? = null

@@ -1,4 +1,4 @@
-package com.example.demo
+package com.example.demo.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.demo.R
 import com.example.demo.databinding.FragmentLoginBinding
 
 private var visible: Boolean = false
@@ -77,7 +78,7 @@ class LoginFragment : Fragment() {
     private fun checkLogin() {
         if (checkUser()) {
             if (checkPassword()) {
-                findNavController().navigate(R.id.succesLoginAction)
+                findNavController().navigate(R.id.goToOptionsFragment)
             } else {
                 showErrorMsg()
             }

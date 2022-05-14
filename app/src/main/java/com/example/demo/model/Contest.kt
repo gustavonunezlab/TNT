@@ -1,4 +1,4 @@
-package com.example.demo.Contest
+package com.example.demo.model
 
 import com.example.demo.R
 

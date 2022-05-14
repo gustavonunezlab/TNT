@@ -1,16 +1,14 @@
-package com.example.demo
+package com.example.demo.viewModel
 
 import android.app.Application
 import android.graphics.Bitmap
 import android.util.Log
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.lifecycle.*
-import com.example.demo.database.Report
+import com.example.demo.model.Report
 import com.example.demo.database.ReportRoomDatabase
 import com.example.demo.database.ReportsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 
 class ReportViewModel(application: Application) : AndroidViewModel(application) {
 

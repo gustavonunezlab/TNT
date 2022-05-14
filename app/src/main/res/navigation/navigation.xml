@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/main_fragment"
-        android:name="com.example.demo.MainFragment"
+        android:name="com.example.demo.fragments.MainFragment"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/loginAction"
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/report_fragment"
-        android:name="com.example.demo.ReportFragment"
+        android:name="com.example.demo.fragments.ReportFragment"
         tools:layout="@layout/fragment_report">
         <action
             android:id="@+id/fishingInfoAction"
@@ -32,16 +32,20 @@
             app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/reportDisplayAction"
-            app:destination="@id/report_display_fragment"></action>
+            app:destination="@id/report_display_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
 
     </fragment>
     <activity
         android:id="@+id/fishing_info_activity"
-        android:name="com.example.demo.FishingInfoActivity"
+        android:name="com.example.demo.activity.FishingInfoActivity"
         tools:layout="@layout/activity_fishing_info" />
     <fragment
         android:id="@+id/report_display_fragment"
-        android:name="com.example.demo.ReportDisplayFragment"
+        android:name="com.example.demo.fragments.ReportDisplayFragment"
         tools:layout="@layout/fragment_report_display">
         <argument
             android:name="title"
@@ -52,37 +56,71 @@
     </fragment>
     <fragment
         android:id="@+id/about_fragment"
-        android:name="com.example.demo.AboutFragment"
+        android:name="com.example.demo.fragments.AboutFragment"
         tools:layout="@layout/fragment_about" />
     <fragment
-        android:id="@+id/historial_fragment"
-        android:name="com.example.demo.Report.ReportListFragment"
+        android:id="@+id/my_reports_fragment"
+        android:name="com.example.demo.fragments.ReportListFragment"
         tools:layout="@layout/fragment_report_list" />
 
     <fragment
         android:id="@+id/login_fragment"
-        android:name="com.example.demo.LoginFragment"
+        android:name="com.example.demo.fragments.LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/succesLoginAction"
+            android:id="@+id/goToOptionsFragment"
+            app:destination="@id/options_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/contest_fragment"
+        android:name="com.example.demo.fragments.ContestListFragment"
+        tools:layout="@layout/fragment_contest_list" />
+    <fragment
+        android:id="@+id/regulations_fragment"
+        android:name="com.example.demo.fragments.RegulationListFragment"
+        tools:layout="@layout/fragment_regulation_list" />
+    <fragment
+        android:id="@+id/contest_display_fragment"
+        android:name="com.example.demo.fragments.ContestDisplayFragment"
+        tools:layout="@layout/fragment_contest_display" />
+    <fragment
+        android:id="@+id/options_fragment"
+        android:name="com.example.demo.fragments.OptionsFragment"
+        tools:layout="@layout/fragment_options">
+        <action
+            android:id="@+id/goToMyReportsAction"
+            app:destination="@id/my_reports_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/goToNewReportAction"
             app:destination="@id/report_fragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/goToContestsAction"
+            app:destination="@id/contest_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/goToRegulationsAction"
+            app:destination="@id/regulations_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
-    <fragment
-        android:id="@+id/contest_fragment"
-        android:name="com.example.demo.Contest.ContestListFragment"
-        tools:layout="@layout/fragment_contest_list" />
-    <fragment
-        android:id="@+id/regulations_fragment"
-        android:name="com.example.demo.Regulation.RegulationListFragment"
-        tools:layout="@layout/fragment_regulation_list" />
-    <fragment
-        android:id="@+id/contest_display_fragment"
-        android:name="com.example.demo.Contest.ContestDisplayFragment"
-        tools:layout="@layout/fragment_contest_display" />
 
     />
 

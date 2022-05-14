@@ -1,16 +1,14 @@
-package com.example.demo
+package com.example.demo.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.example.demo.R
 import com.example.demo.databinding.ActivityMainBinding
-import com.example.demo.Report.ReportListAdapter
 
 private lateinit var binding: ActivityMainBinding
 private lateinit var appBarConfiguration: AppBarConfiguration

@@ -1,14 +1,13 @@
 package com.example.demo.database
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.demo.R
+import com.example.demo.model.Report
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
