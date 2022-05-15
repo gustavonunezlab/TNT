@@ -17,7 +17,7 @@ import com.example.demo.model.Report
 import com.example.demo.databinding.FragmentMainBinding
 
 class MainFragment : Fragment(), ReportListAdapter.OnReportClickListener {
-    private val reportViewModel: ReportViewModel by navGraphViewModels(R.id.app_navigation)//by navGraphViewModels(R.id.app_navigation)
+    private val reportViewModel: ReportViewModel by navGraphViewModels(R.id.app_navigation)
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
@@ -58,4 +58,5 @@ class MainFragment : Fragment(), ReportListAdapter.OnReportClickListener {
     override fun onItemClick(report: Report) {
 
     }
+
 }

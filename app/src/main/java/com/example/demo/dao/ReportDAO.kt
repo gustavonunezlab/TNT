@@ -7,7 +7,7 @@ import com.example.demo.model.Report
 
 @Dao
 interface ReportDAO {
-    @Query("SELECT * from report_table ORDER BY id ASC")
+    @Query("SELECT * from report_table ORDER BY id DESC")
     fun getReports(): LiveData<List<Report>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

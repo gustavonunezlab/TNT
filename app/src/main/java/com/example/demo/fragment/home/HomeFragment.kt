@@ -1,4 +1,4 @@
-package com.example.demo.fragment
+package com.example.demo.fragment.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.demo.R
-import com.example.demo.databinding.FragmentOptionsBinding
+import com.example.demo.databinding.FragmentHomeBinding
 
-class OptionsFragment : Fragment() {
-    private var _binding: FragmentOptionsBinding? = null
+class HomeFragment : Fragment() {
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentOptionsBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         _binding!!.myReportsButton.setOnClickListener { showMyReports() }
         _binding!!.newReportButton.setOnClickListener { newReport() }
@@ -29,7 +29,7 @@ class OptionsFragment : Fragment() {
     }
 
     private fun showMyReports() {
-        findNavController().navigate(R.id.goToMyReportsAction)
+        findNavController().navigate(R.id.goToMyReportsFromHomeAction)
     }
 
     private fun newReport() {

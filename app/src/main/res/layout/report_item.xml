@@ -8,7 +8,7 @@
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/featured_image"
+        android:id="@+id/report_imageView"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/featured_image"
+        app:layout_constraintStart_toEndOf="@+id/report_imageView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:text="@tools:sample/lorem" />
@@ -41,7 +41,7 @@
         android:layout_marginStart="20dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/featured_image"
+        app:layout_constraintStart_toEndOf="@+id/report_imageView"
         app:layout_constraintTop_toBottomOf="@+id/report_title"
         app:layout_constraintVertical_bias="0.0"
         tools:text="@tools:sample/lorem/random" />
@@ -53,6 +53,6 @@
         android:textColor="@color/black"
         android:layout_marginStart="20dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/featured_image"
+        app:layout_constraintStart_toEndOf="@+id/report_imageView"
         app:layout_constraintTop_toBottomOf="@+id/report_fishingType" />
 </androidx.constraintlayout.widget.ConstraintLayout>

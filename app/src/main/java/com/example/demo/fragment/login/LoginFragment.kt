@@ -78,7 +78,7 @@ class LoginFragment : Fragment() {
     private fun checkLogin() {
         if (checkUser()) {
             if (checkPassword()) {
-                findNavController().navigate(R.id.goToOptionsFragment)
+                findNavController().navigate(R.id.goToHomeFragment)
             } else {
                 showErrorMsg()
             }

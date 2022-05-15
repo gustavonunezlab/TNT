@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.navGraphViewModels
 import com.example.demo.R
 import com.example.demo.databinding.FragmentReportDetailBinding
-import com.example.demo.viewModel.ReportViewModel
 
 class ReportDetailFragment : Fragment() {
 
@@ -34,15 +32,16 @@ class ReportDetailFragment : Fragment() {
        // val image = model.image.value
        // _binding!!.captureImageView.setImageBitmap(image)
 
-        _binding!!.doneButton.setOnClickListener { done() }
+        _binding!!.doneButton.setOnClickListener { goBack() }
+
         _binding!!.updateButton.setOnClickListener { updateReport() }
 
         val view = binding.root
         return view
     }
 
-    private fun done() {
-        findNavController().navigate(R.id.options_fragment)
+    private fun goBack() {
+        findNavController().navigate(R.id.goToMyReportsFromReportDetailAction)
     }
     private fun updateReport() {
         val action = ReportDetailFragmentDirections.goToReportUpdateAction(args.currentReport)

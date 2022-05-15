@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -36,19 +37,19 @@ class ReportUpdateFragment : Fragment() {
     ): View? {
         _binding = FragmentReportUpdateBinding.inflate(inflater, container, false)
         val view = binding.root
-        model = ViewModelProvider(this).get(ReportViewModel::class.java)
+        model = ViewModelProvider(this)[ReportViewModel::class.java]
         val fishType = resources.getStringArray(R.array.fishType)
         val arrayAdapter = ArrayAdapter(view.context, R.layout.dropdown_item, fishType)
 
-        _binding!!.autoCompleteTextView.setAdapter(arrayAdapter)
+        _binding!!.spinner.adapter = arrayAdapter
         _binding!!.helpButton.setOnClickListener { fishingInfo() }
         _binding!!.photoButton.setOnClickListener { takePhoto() }
         _binding!!.updateButton.setOnClickListener { updateReport() }
 
         _binding!!.updateTitleTextInput.setText(args.currentReport.title)
 
-     //   val arrayPosition = arrayAdapter.getPosition(args.currentReport.fishing_type)
-        //  _binding!!.autoCompleteTextView.setSelection(arrayPosition)
+        val arrayPosition = arrayAdapter.getPosition(args.currentReport.fishing_type)
+        _binding!!.spinner.setSelection(arrayPosition)
 
         return view
     }
@@ -66,14 +67,13 @@ class ReportUpdateFragment : Fragment() {
     private fun updateReport() {
 
         val title = _binding?.updateTitleTextInput?.text.toString()
-        val fishingType = _binding?.autoCompleteTextView?.text.toString()
+        val fishingType = _binding?.spinner?.selectedItem.toString()
         val date = args.currentReport.date
-
 
         val updatedReport = Report(args.currentReport.id, title, fishingType, date)
         model.updateReport(updatedReport)
         Toast.makeText(activity, "Reporte editado correctamente", Toast.LENGTH_LONG).show()
-        val action = ReportUpdateFragmentDirections.goToReportDetailAction(updatedReport)
+        val action = ReportUpdateFragmentDirections.goToReportDetailFromUpdateReportAction(updatedReport)
         findNavController().navigate(action)
 
     }

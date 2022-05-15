@@ -53,7 +53,7 @@ class ReportListFragment : Fragment(), ReportListAdapter.OnReportClickListener {
 
     override fun onItemClick(report: Report) {
 
-        val action = ReportListFragmentDirections.goToReportDetailAction(report)
+        val action = ReportListFragmentDirections.goToReportDetailFromMyReportsAction(report)
 
          findNavController().navigate(action)
     }

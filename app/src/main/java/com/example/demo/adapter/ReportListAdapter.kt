@@ -38,16 +38,15 @@ class ReportListAdapter(
         val date: TextView = view.findViewById(R.id.report_dateTextView)
 
         //TODO: ver tema imagen
-        val featuredImage: ImageView = view.findViewById(R.id.featured_image)
+      //  val featuredImage: ImageView = view.findViewById(R.id.featured_image)
 
         fun bind(report: Report) {
             itemView.setOnClickListener { itemClickListener.onItemClick(report) }
-
             title.text = report.title
             fishingType.text = report.fishing_type
             date.text = report.date
-            //  featuredImage.setImageBitmap(report.featured_image)
-            //  featuredImage.scaleType
+          //  featuredImage.setImageBitmap(report.featured_image)
+          //  featuredImage.scaleType
 
         }
 
