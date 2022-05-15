@@ -1,4 +1,4 @@
-package com.example.demo.fragments
+package com.example.demo.fragment.add
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -17,16 +17,18 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.demo.R
+import com.example.demo.databinding.FragmentReportAddBinding
+import com.example.demo.fragment.detail.ReportDetailFragment
+import com.example.demo.fragment.detail.ReportDetailFragmentDirections
 import com.example.demo.viewModel.ReportViewModel
 import com.example.demo.model.Report
-import com.example.demo.databinding.FragmentReportBinding
 import java.util.*
 
 const val REQUEST_IMAGE_CAPTURE = 1
 
-class ReportFragment : Fragment() {
+class ReportAddFragment : Fragment() {
 
-    private var _binding: FragmentReportBinding? = null
+    private var _binding: FragmentReportAddBinding? = null
     private val binding get() = _binding!!
 
     private val model: ReportViewModel by navGraphViewModels(R.id.app_navigation)
@@ -36,7 +38,7 @@ class ReportFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentReportBinding.inflate(inflater, container, false)
+        _binding = FragmentReportAddBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val fishType = resources.getStringArray(R.array.fishType)
@@ -68,7 +70,7 @@ class ReportFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
-            model.setImage(imageBitmap)
+            //  model.setImage(imageBitmap)
             _binding!!.captureImageView.setImageBitmap(imageBitmap)
         }
     }
@@ -77,20 +79,18 @@ class ReportFragment : Fragment() {
     private fun sendReport() {
         // Comentada la condicion para realizar pruebas.
         //  if(checkData()) {
+
         val title = _binding?.titleTextInput?.text.toString()
-        model.setTitle(title)
-
         val fishingType = _binding?.autoCompleteTextView?.text.toString()
-        model.setFishingType(fishingType)
-
         val sdf = SimpleDateFormat("dd/M/yyyy")
         val currentDate = sdf.format(Date())
-        model.setDate(currentDate)
 
-        val report = Report(model.title.value!!, model.fishingType.value!!, model.date.value!!)
+        val report = Report(0, title, fishingType, currentDate)
+
         model.insert(report)
-
-        findNavController().navigate(R.id.reportDisplayAction)
+        Toast.makeText(activity, "Reporte agregado correctamente", Toast.LENGTH_LONG).show()
+        val action = ReportAddFragmentDirections.goToReportDetailAction(report)
+        findNavController().navigate(action)
         //  }
     }
 

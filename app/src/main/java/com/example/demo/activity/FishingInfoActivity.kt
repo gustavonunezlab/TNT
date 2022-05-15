@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.demo.Cordinadora
 import com.example.demo.R
-import com.example.demo.fragments.DescriptionFishingTypeFragment
+import com.example.demo.fragment.info.DescriptionFishingTypeFragment
 
 class FishingInfoActivity : AppCompatActivity(), Cordinadora {
     override fun onCreate(savedInstanceState: Bundle?) {

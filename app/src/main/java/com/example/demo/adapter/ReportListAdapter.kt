@@ -33,18 +33,21 @@ class ReportListAdapter(
     }
 
     inner class ReportViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val title: TextView = view.findViewById(R.id.historial_title)
-        val description: TextView = view.findViewById(R.id.historial_description)
+        val title: TextView = view.findViewById(R.id.report_title)
+        val fishingType: TextView = view.findViewById(R.id.report_fishingType)
+        val date: TextView = view.findViewById(R.id.report_dateTextView)
 
         //TODO: ver tema imagen
         val featuredImage: ImageView = view.findViewById(R.id.featured_image)
 
         fun bind(report: Report) {
             itemView.setOnClickListener { itemClickListener.onItemClick(report) }
+
             title.text = report.title
-            description.text = report.fishing_type
-          //  featuredImage.setImageBitmap(report.featured_image)
-          //  featuredImage.scaleType
+            fishingType.text = report.fishing_type
+            date.text = report.date
+            //  featuredImage.setImageBitmap(report.featured_image)
+            //  featuredImage.scaleType
 
         }
 

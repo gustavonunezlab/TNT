@@ -1,4 +1,4 @@
-package com.example.demo.fragments
+package com.example.demo.fragment.detail
 
 import android.os.Build
 import android.os.Bundle
@@ -9,38 +9,37 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.demo.viewModel.ContestViewModel
 import com.example.demo.R
-import com.example.demo.viewModel.ReportViewModel
-import com.example.demo.databinding.FragmentReportDisplayBinding
+import com.example.demo.databinding.FragmentContestDetailBinding
 
-class ReportDisplayFragment : Fragment() {
-
-    private var _binding: FragmentReportDisplayBinding? = null
+class ContestDetailFragment : Fragment() {
+    private var _binding: FragmentContestDetailBinding? = null
     private val binding get() = _binding!!
-    private val model: ReportViewModel by navGraphViewModels(R.id.app_navigation)
+    private val model: ContestViewModel by navGraphViewModels(R.id.app_navigation)
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentReportDisplayBinding.inflate(inflater, container, false)
-
+        _binding = FragmentContestDetailBinding.inflate(inflater, container, false)
         _binding!!.titleTextView.text = model.title.value
-        _binding!!.fishingTypeTextView.text = model.fishingType.value
+        _binding!!.descriptionTextView.text = model.description.value
         _binding!!.dateTextView.text = model.date.value
+        _binding!!.termsAndConditionsTextView.text = model.termsAndConditions.value
 
         val image = model.image.value
         _binding!!.captureImageView.setImageBitmap(image)
 
-        _binding!!.updateButton.setOnClickListener { updateReport() }
+        _binding!!.goBackButton.setOnClickListener { goBack() }
 
         val view = binding.root
         return view
     }
 
-    private fun updateReport() {
-        findNavController().navigate(R.id.report_fragment)
+    private fun goBack() {
+        findNavController().popBackStack()
     }
 
 }

@@ -7,6 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.demo.dao.ReportDAO
 import com.example.demo.model.Report
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -52,26 +53,28 @@ public abstract class ReportRoomDatabase : RoomDatabase() {
                 super.onOpen(db)
                 INSTANCIA?.let { database ->
                     scope.launch {
-                       populateDatabase(database.reportDao())
+                        populateDatabase(database.reportDao())
                     }
                 }
             }
 
             suspend fun populateDatabase(reportDAO: ReportDAO) {
                 Log.i("populanding", "cargo?")
-                if (reportDAO.getCount() == 0){
-                reportDAO.deleteAll()
-                val report =
-                    Report("Pesca loca", "Pesca deportiva", "09/07/1816")
-                reportDAO.insertReport(report)
-                reportDAO.insertReport(
-                    Report(
-                        "El sacrificio del tiburón",
-                        "Pesca científica",
-                        "25/05/1810"
+                if (reportDAO.getCount() == 0) {
+                    reportDAO.deleteAll()
+                    val report =
+                        Report(0, "Pesca loca", "Deportiva", "09/07/1816")
+                    reportDAO.insertReport(report)
+                    reportDAO.insertReport(
+                        Report(
+                            0,
+                            "El sacrificio del tiburón",
+                            "Comercial",
+                            "25/05/1810"
+                        )
                     )
-                )
-            }}
+                }
+            }
         }
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ReportDisplayFragment">
+    tools:context=".fragment.detail.ReportDetailFragment">
 
     <ImageView
         android:id="@+id/captureImageView"
@@ -111,8 +111,20 @@
         android:layout_height="50dp"
         android:layout_marginStart="57dp"
         android:layout_marginBottom="44dp"
-        android:text="Volver"
+        android:text="Editar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/doneButton"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="44dp"
+        android:text="Listo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+       />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.demo.fragments
+package com.example.demo.fragment.login
 
 import android.annotation.SuppressLint
 import android.os.Bundle

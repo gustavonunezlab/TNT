@@ -1,10 +1,7 @@
-package com.example.demo.database
+package com.example.demo.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.demo.model.Report
 
 
@@ -21,5 +18,8 @@ interface ReportDAO {
 
     @Query("SELECT COUNT(id) FROM report_table")
     suspend fun getCount(): Int
+
+    @Update
+    suspend fun updateReport(report: Report)
 }
 

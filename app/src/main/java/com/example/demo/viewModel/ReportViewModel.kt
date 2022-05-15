@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.demo.model.Report
 import com.example.demo.database.ReportRoomDatabase
-import com.example.demo.database.ReportsRepository
+import com.example.demo.repository.ReportsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -55,5 +55,11 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
     }
     fun insert(report: Report) = viewModelScope.launch(Dispatchers.IO) {
         repository.insertReport(report)
+    }
+
+    fun updateReport(report: Report) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateReport(report)
+        }
     }
 }

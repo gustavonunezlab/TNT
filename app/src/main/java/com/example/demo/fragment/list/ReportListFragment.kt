@@ -1,4 +1,4 @@
-package com.example.demo.fragments
+package com.example.demo.fragment.list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -52,15 +52,10 @@ class ReportListFragment : Fragment(), ReportListAdapter.OnReportClickListener {
     }
 
     override fun onItemClick(report: Report) {
-        reportViewModel.setTitle(report.title)
-        reportViewModel.setFishingType(report.fishing_type)
-        reportViewModel.setDate(report.date)
-        //TODO: ver tema imagen
 
-        //  val bitmap = BitmapFactory.decodeResource(resources, report.featured_image)
-        // reportViewModel.setImage(bitmap)
+        val action = ReportListFragmentDirections.goToReportDetailAction(report)
 
-        findNavController().navigate(R.id.report_display_fragment)
+         findNavController().navigate(action)
     }
 
 

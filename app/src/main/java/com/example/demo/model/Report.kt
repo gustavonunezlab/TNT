@@ -1,13 +1,17 @@
 package com.example.demo.model
 
 import android.graphics.Bitmap
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "report_table")
 data class Report(
-
+    @PrimaryKey(autoGenerate = true)
+    var id: Int,
     @ColumnInfo(name = "title")
     var title: String,
     @ColumnInfo(name = "fishing_type")
@@ -16,7 +20,6 @@ data class Report(
     var date: String,
     //@ColumnInfo(name = "featured_image")
     //var featured_image: Bitmap,
-) {
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
-}
+):Parcelable
+
+

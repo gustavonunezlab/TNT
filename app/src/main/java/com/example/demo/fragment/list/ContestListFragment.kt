@@ -1,4 +1,4 @@
-package com.example.demo.fragments
+package com.example.demo.fragment.list
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -48,7 +48,7 @@ class ContestListFragment : Fragment(), ContestListAdapter.OnContestClickListene
         val bitmap = BitmapFactory.decodeResource(resources, contest.featuredImage)
         model.setImage(bitmap)
 
-        findNavController().navigate(R.id.contest_display_fragment)
+        findNavController().navigate(R.id.contest_detail_fragment)
     }
 
 }

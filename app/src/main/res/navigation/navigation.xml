@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/main_fragment"
-        android:name="com.example.demo.fragments.MainFragment"
+        android:name="com.example.demo.fragment.MainFragment"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/loginAction"
@@ -20,9 +20,10 @@
 
     </fragment>
     <fragment
-        android:id="@+id/report_fragment"
-        android:name="com.example.demo.fragments.ReportFragment"
-        tools:layout="@layout/fragment_report">
+        android:id="@+id/report_add_fragment"
+        android:name="com.example.demo.fragment.add.ReportAddFragment"
+        android:label="Fishing App: Crear reporte"
+        tools:layout="@layout/fragment_report_add">
         <action
             android:id="@+id/fishingInfoAction"
             app:destination="@id/fishing_info_activity"
@@ -31,41 +32,59 @@
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/reportDisplayAction"
-            app:destination="@id/report_display_fragment"
+            android:id="@+id/goToReportDetailAction"
+            app:destination="@id/report_detail_fragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"/>
+            app:popExitAnim="@android:anim/fade_out" />
 
     </fragment>
     <activity
         android:id="@+id/fishing_info_activity"
         android:name="com.example.demo.activity.FishingInfoActivity"
+        android:label="Fishing App: Información"
         tools:layout="@layout/activity_fishing_info" />
     <fragment
-        android:id="@+id/report_display_fragment"
-        android:name="com.example.demo.fragments.ReportDisplayFragment"
-        tools:layout="@layout/fragment_report_display">
+        android:id="@+id/report_detail_fragment"
+        android:name="com.example.demo.fragment.detail.ReportDetailFragment"
+        android:label="Fishing App: Reporte -> Detalle"
+        tools:layout="@layout/fragment_report_detail">
+        <action
+            android:id="@+id/goToReportUpdateAction"
+            app:destination="@id/report_update_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            />
         <argument
-            android:name="title"
-            app:argType="string" />
-        <argument
-            android:name="fishingType"
-            app:argType="string" />
+            android:name="currentReport"
+            app:argType="com.example.demo.model.Report" />
     </fragment>
     <fragment
         android:id="@+id/about_fragment"
-        android:name="com.example.demo.fragments.AboutFragment"
+        android:name="com.example.demo.fragment.info.AboutFragment"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/my_reports_fragment"
-        android:name="com.example.demo.fragments.ReportListFragment"
-        tools:layout="@layout/fragment_report_list" />
+        android:name="com.example.demo.fragment.list.ReportListFragment"
+        android:label="Fishing App: Mis reportes"
+        tools:layout="@layout/fragment_report_list">
+        <action
+            android:id="@+id/goToReportDetailAction"
+            app:destination="@id/report_detail_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/login_fragment"
-        android:name="com.example.demo.fragments.LoginFragment"
+        android:name="com.example.demo.fragment.login.LoginFragment"
+        android:label="Fishing App: Login"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/goToOptionsFragment"
@@ -78,19 +97,23 @@
     </fragment>
     <fragment
         android:id="@+id/contest_fragment"
-        android:name="com.example.demo.fragments.ContestListFragment"
+        android:name="com.example.demo.fragment.list.ContestListFragment"
+        android:label="Fishing App: Concursos"
         tools:layout="@layout/fragment_contest_list" />
     <fragment
         android:id="@+id/regulations_fragment"
-        android:name="com.example.demo.fragments.RegulationListFragment"
+        android:name="com.example.demo.fragment.list.RegulationListFragment"
+        android:label="Fishing App: Reglamentaciones"
         tools:layout="@layout/fragment_regulation_list" />
     <fragment
-        android:id="@+id/contest_display_fragment"
-        android:name="com.example.demo.fragments.ContestDisplayFragment"
-        tools:layout="@layout/fragment_contest_display" />
+        android:id="@+id/contest_detail_fragment"
+        android:name="com.example.demo.fragment.detail.ContestDetailFragment"
+        android:label="Fishing App: Concurso -> Detalle"
+        tools:layout="@layout/fragment_contest_detail" />
     <fragment
         android:id="@+id/options_fragment"
-        android:name="com.example.demo.fragments.OptionsFragment"
+        android:name="com.example.demo.fragment.OptionsFragment"
+        android:label="Fishing App: Inicio"
         tools:layout="@layout/fragment_options">
         <action
             android:id="@+id/goToMyReportsAction"
@@ -101,7 +124,7 @@
             app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/goToNewReportAction"
-            app:destination="@id/report_fragment"
+            app:destination="@id/report_add_fragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
@@ -120,6 +143,22 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/report_update_fragment"
+        android:name="com.example.demo.fragment.update.ReportUpdateFragment"
+        android:label="Fishing App: Reporte -> Edición"
+        tools:layout="@layout/fragment_report_update">
+        <action
+            android:id="@+id/goToReportDetailAction"
+            app:destination="@id/report_detail_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <argument
+            android:name="currentReport"
+            app:argType="com.example.demo.model.Report" />
     </fragment>
 
     />

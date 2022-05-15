@@ -1,4 +1,4 @@
-package com.example.demo.fragments
+package com.example.demo.fragment.info
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,11 +9,6 @@ import com.example.demo.Cordinadora
 import com.example.demo.R
 import com.example.demo.databinding.FragmentFishingTypeBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FishingTypeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FishingTypeFragment : Fragment() {
     private var _binding: FragmentFishingTypeBinding? = null
     private val binding get() = _binding!!
@@ -22,19 +17,22 @@ class FishingTypeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentFishingTypeBinding.inflate(inflater, container, false)
 
         val view = binding.root
 
-        binding.sportFishingRadioButton.setOnClickListener{
-            click_en_radio_button(R.id.sportFishingRadioButton) }
-        binding.scientistFishingRadioButton.setOnClickListener{
-            click_en_radio_button(R.id.scientistFishingRadioButton) }
-        binding.touristicFishingRadioButton.setOnClickListener{
-            click_en_radio_button(R.id.touristicFishingRadioButton) }
-        binding.comercialFishingRadioButton.setOnClickListener{
-            click_en_radio_button(R.id.comercialFishingRadioButton) }
+        binding.sportFishingRadioButton.setOnClickListener {
+            click_en_radio_button(R.id.sportFishingRadioButton)
+        }
+        binding.scientistFishingRadioButton.setOnClickListener {
+            click_en_radio_button(R.id.scientistFishingRadioButton)
+        }
+        binding.touristicFishingRadioButton.setOnClickListener {
+            click_en_radio_button(R.id.touristicFishingRadioButton)
+        }
+        binding.comercialFishingRadioButton.setOnClickListener {
+            click_en_radio_button(R.id.comercialFishingRadioButton)
+        }
 
 
 
@@ -42,7 +40,7 @@ class FishingTypeFragment : Fragment() {
     }
 
     private fun click_en_radio_button(id_radio_button: Int) {
-        val index = when (id_radio_button){
+        val index = when (id_radio_button) {
             R.id.sportFishingRadioButton -> 0
             R.id.scientistFishingRadioButton -> 1
             R.id.touristicFishingRadioButton -> 2
@@ -54,6 +52,7 @@ class FishingTypeFragment : Fragment() {
             activity.onChangeFishingType(index)
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
