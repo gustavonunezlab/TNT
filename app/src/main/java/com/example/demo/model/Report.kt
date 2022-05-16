@@ -18,10 +18,8 @@ data class Report(
     var fishing_type: String,
     @ColumnInfo(name = "date")
     var date: String,
-  /*  @ColumnInfo(name = "photo")
-    var photo: Bitmap,
-
-   */
+    @ColumnInfo(name = "photo_path")
+    var photo_path: String,
 ):Parcelable
 
 

@@ -1,5 +1,7 @@
 package com.example.demo.adapter
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,20 +38,25 @@ class ReportListAdapter(
         val title: TextView = view.findViewById(R.id.report_title)
         val fishingType: TextView = view.findViewById(R.id.report_fishingType)
         val date: TextView = view.findViewById(R.id.report_dateTextView)
-
-        //TODO: ver tema imagen
-      //  val featuredImage: ImageView = view.findViewById(R.id.featured_image)
+        val image: ImageView = view.findViewById(R.id.report_imageView)
 
         fun bind(report: Report) {
             itemView.setOnClickListener { itemClickListener.onItemClick(report) }
             title.text = report.title
             fishingType.text = report.fishing_type
             date.text = report.date
-          //  featuredImage.setImageBitmap(report.featured_image)
-          //  featuredImage.scaleType
 
+            //Reducing image size to show on list
+            val options = BitmapFactory.Options().apply {
+                inSampleSize = 20
+            }
+            val imageBitmap: Bitmap? = BitmapFactory.decodeFile(report.photo_path, options)
+
+
+
+
+            image.setImageBitmap(imageBitmap)
         }
-
     }
 
     override fun getItemCount() = reports.size

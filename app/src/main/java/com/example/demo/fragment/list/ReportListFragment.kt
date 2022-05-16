@@ -27,7 +27,7 @@ class ReportListFragment : Fragment(), ReportListAdapter.OnReportClickListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentReportListBinding.inflate(inflater, container, false)
-
+        _binding!!.homeActionButton.setOnClickListener{ goHome() }
         val reportList: RecyclerView = binding.list
         val reportAdapter = ReportListAdapter(this)
         reportList.adapter = reportAdapter
@@ -56,6 +56,10 @@ class ReportListFragment : Fragment(), ReportListAdapter.OnReportClickListener {
         val action = ReportListFragmentDirections.goToReportDetailFromMyReportsAction(report)
 
          findNavController().navigate(action)
+    }
+
+    private fun goHome() {
+        findNavController().navigate(R.id.home_fragment)
     }
 
 

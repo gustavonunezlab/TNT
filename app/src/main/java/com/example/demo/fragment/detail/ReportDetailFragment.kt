@@ -1,5 +1,7 @@
 package com.example.demo.fragment.detail
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -25,12 +27,12 @@ class ReportDetailFragment : Fragment() {
     ): View? {
         _binding = FragmentReportDetailBinding.inflate(inflater, container, false)
 
-        _binding!!.titleTextView.text = args.currentReport.title    //model.title.value
-        _binding!!.fishingTypeTextView.text = args.currentReport.fishing_type //model.fishingType.value
-        _binding!!.dateTextView.text = args.currentReport.date //model.date.value
+        _binding!!.titleTextView.text = args.currentReport.title
+        _binding!!.fishingTypeTextView.text = args.currentReport.fishing_type
+        _binding!!.dateTextView.text = args.currentReport.date
 
-       // val image = model.image.value
-       // _binding!!.captureImageView.setImageBitmap(image)
+        val imageBitmap: Bitmap? = BitmapFactory.decodeFile(args.currentReport.photo_path)
+        _binding!!.captureImageView.setImageBitmap(imageBitmap)
 
         _binding!!.doneButton.setOnClickListener { goBack() }
 

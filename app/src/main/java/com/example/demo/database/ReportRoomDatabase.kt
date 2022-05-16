@@ -57,22 +57,10 @@ public abstract class ReportRoomDatabase : RoomDatabase() {
                     }
                 }
             }
-
             suspend fun populateDatabase(reportDAO: ReportDAO) {
-                Log.i("populanding", "cargo?")
                 if (reportDAO.getCount() == 0) {
                     reportDAO.deleteAll()
-                    val report =
-                        Report(0, "Pesca loca", "Deportiva", "09/07/1816")
-                    reportDAO.insertReport(report)
-                    reportDAO.insertReport(
-                        Report(
-                            0,
-                            "El sacrificio del tiburón",
-                            "Comercial",
-                            "25/05/1810"
-                        )
-                    )
+
                 }
             }
         }
