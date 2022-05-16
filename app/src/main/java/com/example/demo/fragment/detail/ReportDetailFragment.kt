@@ -2,8 +2,11 @@ package com.example.demo.fragment.detail
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -32,14 +35,13 @@ class ReportDetailFragment : Fragment() {
         _binding!!.dateTextView.text = args.currentReport.date
 
         val imageBitmap: Bitmap? = BitmapFactory.decodeFile(args.currentReport.photo_path)
-        _binding!!.captureImageView.setImageBitmap(imageBitmap)
+        rotateImage(imageBitmap!!)
 
         _binding!!.doneButton.setOnClickListener { goBack() }
 
         _binding!!.updateButton.setOnClickListener { updateReport() }
 
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     private fun goBack() {
@@ -48,6 +50,32 @@ class ReportDetailFragment : Fragment() {
     private fun updateReport() {
         val action = ReportDetailFragmentDirections.goToReportUpdateAction(args.currentReport)
         findNavController().navigate(action)
+    }
+
+    private fun rotateImage(bitmap: Bitmap) {
+
+        val exif = ExifInterface(args.currentReport.photo_path)
+        val orientation: Int =
+            exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+        Log.i("orientation", orientation.toString())
+
+        val matrix = Matrix()
+        when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> {
+                matrix.setRotate(90F)
+            }
+            ExifInterface.ORIENTATION_ROTATE_180 -> {
+                matrix.setRotate(180F)
+            }
+            ExifInterface.ORIENTATION_ROTATE_270 -> {
+                matrix.setRotate(270F)
+            }
+        }
+
+        val rotatedBitmap =
+            Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+        _binding!!.captureImageView.setImageBitmap(rotatedBitmap)
+
     }
 
 }

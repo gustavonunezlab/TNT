@@ -2,6 +2,9 @@ package com.example.demo.adapter
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,12 +53,42 @@ class ReportListAdapter(
             val options = BitmapFactory.Options().apply {
                 inSampleSize = 20
             }
-            val imageBitmap: Bitmap? = BitmapFactory.decodeFile(report.photo_path, options)
 
 
+            val imageBitmap: Bitmap = BitmapFactory.decodeFile(report.photo_path, options)
+            val exif = ExifInterface(report.photo_path)
+            val orientation: Int =
+                exif.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_NORMAL
+                )
+            Log.i("orientation", orientation.toString())
 
+            val matrix = Matrix()
+            when (orientation) {
+                ExifInterface.ORIENTATION_ROTATE_90 -> {
+                    matrix.setRotate(90F)
+                }
+                ExifInterface.ORIENTATION_ROTATE_180 -> {
+                    matrix.setRotate(180F)
+                }
+                ExifInterface.ORIENTATION_ROTATE_270 -> {
+                    matrix.setRotate(270F)
+                }
+            }
 
-            image.setImageBitmap(imageBitmap)
+            val rotatedBitmap =
+                Bitmap.createBitmap(
+                    imageBitmap!!,
+                    0,
+                    0,
+                    imageBitmap!!.width,
+                    imageBitmap!!.height,
+                    matrix,
+                    true
+                )
+
+            image.setImageBitmap(rotatedBitmap)
         }
     }
 
@@ -63,5 +96,10 @@ class ReportListAdapter(
 
     interface OnReportClickListener {
         fun onItemClick(report: Report)
+    }
+
+    private fun rotateImage(bitmap: Bitmap) {
+
+
     }
 }

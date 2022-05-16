@@ -3,12 +3,15 @@ package com.example.demo.fragment.add
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.icu.text.SimpleDateFormat
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +31,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
-
+import kotlin.math.min
 
 const val REQUEST_TAKE_PHOTO = 1
 
@@ -117,47 +120,88 @@ class ReportAddFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == AppCompatActivity.RESULT_OK) {
+
+
+            rotateImage(reduceBitmap())
+
+            //TODO ver tema reducir tamaño de almacenamiento
+            /*
             val imageBitmap: Bitmap? = BitmapFactory.decodeFile(currentPhotoPath)
             val outputStream: FileOutputStream = FileOutputStream(currentPhotoPath)
-
             imageBitmap?.compress(
                 Bitmap.CompressFormat.JPEG,
                 20,
                 outputStream
             ); // this line will reduce the size , try changing the second argument to adjust to correct size , it ranges 0-100
-            _binding!!.captureImageView.setImageBitmap(imageBitmap)
+            */
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     private fun sendReport() {
-        // Comentada la condicion para realizar pruebas.
-        //  if(checkData()) {
-
-        val title = _binding?.titleTextInput?.text.toString()
-        val fishingType = _binding?.spinner?.selectedItem.toString()
-        val sdf = SimpleDateFormat("dd/M/yyyy")
-        val currentDate = sdf.format(Date())
-
-        val report = Report(0, title, fishingType, currentDate, currentPhotoPath)
-
-        model.insert(report)
-        Toast.makeText(activity, "Reporte agregado correctamente", Toast.LENGTH_LONG).show()
-
-        findNavController().navigate(R.id.goToMyReportsFromReportAddAction)
-        //  }
-    }
-
-    private fun checkData(): Boolean {
-        if (_binding!!.titleTextInput.text?.isEmpty() == true) {
-            Toast.makeText(activity, "Ingrese un título para la imagen", Toast.LENGTH_LONG).show()
-            return false
-        } else if (_binding!!.captureImageView.getDrawable() == null) {
-            Toast.makeText(activity, "Capture una imagen", Toast.LENGTH_LONG).show()
-            return false
-        } else {
-            return true
+        if (checkData()) {
+            val title = _binding?.titleTextInput?.text.toString()
+            val fishingType = _binding?.spinner?.selectedItem.toString()
+            val sdf = SimpleDateFormat("dd/M/yyyy")
+            val currentDate = sdf.format(Date())
+            val report = Report(0, title, fishingType, currentDate, currentPhotoPath)
+            model.insert(report)
+            Toast.makeText(activity, "Reporte agregado correctamente", Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.goToMyReportsFromReportAddAction)
         }
     }
 
+    private fun checkData(): Boolean {
+        return if (_binding!!.titleTextInput.text?.isEmpty() == true) {
+            Toast.makeText(activity, "Ingrese un título para la imagen", Toast.LENGTH_LONG).show()
+            false
+        } else if (_binding!!.captureImageView.getDrawable() == null) {
+            Toast.makeText(activity, "Capture una imagen", Toast.LENGTH_LONG).show()
+            false
+        } else {
+            true
+        }
+    }
+
+    private fun reduceBitmap(): Bitmap {
+        val targetImageViewWidth = _binding!!.captureImageView.width
+        val targetImageViewHeight = _binding!!.captureImageView.height
+
+        val bmOptions = BitmapFactory.Options()
+        bmOptions.inJustDecodeBounds = true
+        BitmapFactory.decodeFile(currentPhotoPath, bmOptions)
+
+        val cameraWidth = bmOptions.outWidth
+        val cameraHeight = bmOptions.outHeight
+        val scaleFactor =
+            min(cameraWidth / targetImageViewWidth, cameraHeight / targetImageViewHeight)
+        bmOptions.inSampleSize = scaleFactor
+        bmOptions.inJustDecodeBounds = false
+        return BitmapFactory.decodeFile(currentPhotoPath, bmOptions)
+    }
+
+    private fun rotateImage(bitmap: Bitmap) {
+
+        val exif = ExifInterface(currentPhotoPath)
+        val orientation: Int =
+            exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+        Log.i("orientation", orientation.toString())
+
+        val matrix = Matrix()
+        when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> {
+                matrix.setRotate(90F)
+            }
+            ExifInterface.ORIENTATION_ROTATE_180 -> {
+                matrix.setRotate(180F)
+            }
+            ExifInterface.ORIENTATION_ROTATE_270 -> {
+                matrix.setRotate(270F)
+            }
+        }
+
+        val rotatedBitmap =
+            Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+        _binding!!.captureImageView.setImageBitmap(rotatedBitmap)
+    }
 }

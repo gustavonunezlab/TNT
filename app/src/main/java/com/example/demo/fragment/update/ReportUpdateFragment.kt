@@ -3,7 +3,9 @@ package com.example.demo.fragment.update
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.icu.text.SimpleDateFormat
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -33,6 +35,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
+import kotlin.math.min
 
 class ReportUpdateFragment : Fragment() {
 
@@ -67,7 +70,7 @@ class ReportUpdateFragment : Fragment() {
         _binding!!.updateTitleTextInput.setText(args.currentReport.title)
 
         val imageBitmap: Bitmap? = BitmapFactory.decodeFile(args.currentReport.photo_path)
-        _binding!!.updateCaptureImageView.setImageBitmap(imageBitmap)
+        rotateImage(imageBitmap!!)
         return view
     }
 
@@ -123,15 +126,8 @@ class ReportUpdateFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == AppCompatActivity.RESULT_OK) {
-            val imageBitmap: Bitmap? = BitmapFactory.decodeFile(currentPhotoPath)
-            val outputStream: FileOutputStream = FileOutputStream(currentPhotoPath)
-            imageBitmap?.compress(
-                Bitmap.CompressFormat.JPEG,
-                20,
-                outputStream
-            ); // this line will reduce the size , try changing the second argument to adjust to correct size , it ranges 0-100
+            rotateImage(reduceBitmap())
 
-            _binding!!.updateCaptureImageView.setImageBitmap(imageBitmap)
         }
     }
 
@@ -151,9 +147,51 @@ class ReportUpdateFragment : Fragment() {
         val updatedReport = Report(args.currentReport.id, title, fishingType, date, photoPath)
         model.updateReport(updatedReport)
         Toast.makeText(activity, "Reporte editado correctamente", Toast.LENGTH_LONG).show()
-        val action =
-            ReportUpdateFragmentDirections.goToReportDetailFromUpdateReportAction(updatedReport)
-        findNavController().navigate(action)
+
+        findNavController().navigate(R.id.my_reports_fragment)
+
+    }
+
+    private fun reduceBitmap(): Bitmap {
+        val targetImageViewWidth = _binding!!.updateCaptureImageView.width
+        val targetImageViewHeight = _binding!!.updateCaptureImageView.height
+
+        val bmOptions = BitmapFactory.Options()
+        bmOptions.inJustDecodeBounds = true
+        BitmapFactory.decodeFile(currentPhotoPath, bmOptions)
+
+        val cameraWidth = bmOptions.outWidth
+        val cameraHeight = bmOptions.outHeight
+        val scaleFactor =
+            min(cameraWidth / targetImageViewWidth, cameraHeight / targetImageViewHeight)
+        bmOptions.inSampleSize = scaleFactor
+        bmOptions.inJustDecodeBounds = false
+        return BitmapFactory.decodeFile(currentPhotoPath, bmOptions)
+    }
+
+    private fun rotateImage(bitmap: Bitmap) {
+
+        val exif = ExifInterface(currentPhotoPath)
+        val orientation: Int =
+            exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+        Log.i("orientation", orientation.toString())
+
+        val matrix = Matrix()
+        when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> {
+                matrix.setRotate(90F)
+            }
+            ExifInterface.ORIENTATION_ROTATE_180 -> {
+                matrix.setRotate(180F)
+            }
+            ExifInterface.ORIENTATION_ROTATE_270 -> {
+                matrix.setRotate(270F)
+            }
+        }
+
+        val rotatedBitmap =
+            Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+        _binding!!.updateCaptureImageView.setImageBitmap(rotatedBitmap)
 
     }
 
