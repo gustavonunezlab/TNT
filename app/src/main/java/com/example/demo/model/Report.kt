@@ -20,6 +20,10 @@ data class Report(
     var date: String,
     @ColumnInfo(name = "photo_path")
     var photo_path: String,
+    @ColumnInfo(name="latitude")
+    var latitude: Double?,
+    @ColumnInfo(name="longitude")
+    var longitude: Double?,
 ):Parcelable
 
 

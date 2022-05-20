@@ -36,12 +36,20 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
         _date.value = date
     }
 
-    private val _image = MutableLiveData<Bitmap>()
-    val image: LiveData<Bitmap>
-        get() = _image
+    private val _latitude = MutableLiveData<Double>()
+    val latitude: LiveData<Double>
+        get() = _latitude
 
-    fun setImage(image: Bitmap) {
-        _image.value = image
+    fun setLatitude(latitude: Double) {
+        _latitude.value = latitude
+    }
+
+    private val _longitude = MutableLiveData<Double>()
+    val longitude: LiveData<Double>
+        get() = _longitude
+
+    fun setLongitude(longitude: Double) {
+        _longitude.value = longitude
     }
 
     val repository: ReportsRepository
@@ -61,3 +69,4 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
             repository.updateReport(report)
         }
     }
+

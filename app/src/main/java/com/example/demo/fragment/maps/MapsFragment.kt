@@ -3,11 +3,18 @@ package com.example.demo.fragment.maps
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.demo.R
+import com.example.demo.databinding.FragmentMapsBinding
+import com.example.demo.viewModel.ReportViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -18,8 +25,12 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import java.util.*
 
-
 class MapsFragment : Fragment() {
+
+    private var _binding: FragmentMapsBinding? = null
+    private val binding get() = _binding!!
+    private val args: MapsFragmentArgs by navArgs()
+    private lateinit var model: ReportViewModel
 
     private val callback = OnMapReadyCallback { googleMap ->
         /**
@@ -41,7 +52,16 @@ class MapsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_maps, container, false)
+
+        _binding = FragmentMapsBinding.inflate(inflater, container, false)
+        val view = binding.root
+        model = ViewModelProvider(this)[ReportViewModel::class.java]
+
+        _binding!!.goBackActionButton.setOnClickListener { goBack() }
+        _binding!!.sendReportActionButton.setOnClickListener { sendReport() }
+
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +74,7 @@ class MapsFragment : Fragment() {
 
         val height = 140
         val width = 140
-        val bitmapdraw = resources.getDrawable(R.drawable.map_icon2) as BitmapDrawable
+        val bitmapdraw = resources.getDrawable(R.drawable.map_icon) as BitmapDrawable
         val b = bitmapdraw.bitmap
         val smallMarker = Bitmap.createScaledBitmap(b, width, height, false)
 
@@ -77,14 +97,41 @@ class MapsFragment : Fragment() {
                         .snippet(snippet)
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                 )
+                args.currentReport.latitude = latLng.latitude
+                args.currentReport.longitude = latLng.longitude
+                Log.i("Pos: Latitude = ", args.currentReport.latitude.toString())
+                Log.i("Pos: Longitude = ", args.currentReport.longitude.toString())
                 marker!!.showInfoWindow()
             } else {
                 marker!!.hideInfoWindow()
                 marker!!.position = latLng
                 marker!!.snippet = snippet
+                args.currentReport.latitude = latLng.latitude
+                args.currentReport.longitude = latLng.longitude
+                Log.i("Pos: Latitude = ", args.currentReport.latitude.toString())
+                Log.i("Pos: Longitude = ", args.currentReport.longitude.toString())
                 marker!!.showInfoWindow()
             }
         }
     }
 
+    private fun goBack() {
+        findNavController().popBackStack()
+    }
+
+    private fun sendReport() {
+        if (checkCoords()) {
+            model.insert(args.currentReport)
+            Toast.makeText(activity, "Reporte agregado correctamente", Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.my_reports_fragment)
+        }
+    }
+
+    private fun checkCoords(): Boolean {
+        if(args.currentReport.latitude == null && args.currentReport.longitude == null) {
+            Toast.makeText(activity, "Seleccione una ubicación en el mapa", Toast.LENGTH_LONG).show()
+            return false
+        }
+        return true
+    }
 }

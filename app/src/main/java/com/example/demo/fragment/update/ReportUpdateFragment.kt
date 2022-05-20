@@ -11,7 +11,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.text.Editable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,7 +21,6 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -147,8 +145,8 @@ class ReportUpdateFragment : Fragment() {
         } else {
             currentPhotoPath
         }
-
-        val updatedReport = Report(args.currentReport.id, title, fishingType, date, photoPath)
+    //TODO modificar update para agregar coordenadas.
+        val updatedReport = Report(args.currentReport.id, title, fishingType, date, photoPath, null, null)
         model.updateReport(updatedReport)
         Toast.makeText(activity, "Reporte editado correctamente", Toast.LENGTH_LONG).show()
 
@@ -208,7 +206,7 @@ class ReportUpdateFragment : Fragment() {
     }
 
     private fun goToMap() {
-        findNavController().navigate(R.id.goToMapsFragment)
+        findNavController().navigate(R.id.goToMapsFragmentAction)
     }
 
 }

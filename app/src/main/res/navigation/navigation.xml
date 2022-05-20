@@ -33,14 +33,7 @@
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/goToMyReportsFromReportAddAction"
-            app:destination="@id/my_reports_fragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
-        <action
-            android:id="@+id/goToMapsFragment"
+            android:id="@+id/goToMapsFragmentAction"
             app:destination="@id/maps_fragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
@@ -177,8 +170,10 @@
         android:id="@+id/maps_fragment"
         android:name="com.example.demo.fragment.maps.MapsFragment"
         android:label="Fishing App: Añadir marcador"
-        tools:layout="@layout/fragment_maps" />
-
-    />
+        tools:layout="@layout/fragment_maps" >
+        <argument
+            android:name="currentReport"
+            app:argType="com.example.demo.model.Report" />
+    </fragment>
 
 </navigation>

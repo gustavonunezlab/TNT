@@ -25,6 +25,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.demo.R
 import com.example.demo.databinding.FragmentReportAddBinding
+import com.example.demo.fragment.list.ReportListFragmentDirections
 import com.example.demo.model.Report
 import com.example.demo.viewModel.ReportViewModel
 import java.io.File
@@ -58,8 +59,8 @@ class ReportAddFragment : Fragment() {
         _binding!!.spinner.adapter = arrayAdapter
         _binding!!.helpButton.setOnClickListener { fishingInfo() }
         _binding!!.photoButton.setOnClickListener { takePhoto() }
-        _binding!!.sendButton.setOnClickListener { sendReport() }
-        _binding!!.mapButton.setOnClickListener { goToMap() }
+        _binding!!.sendButton.setOnClickListener { continueToMap() }
+
         return view
     }
 
@@ -121,36 +122,27 @@ class ReportAddFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == AppCompatActivity.RESULT_OK) {
-
-
             rotateImage(reduceBitmap())
-
-            //TODO ver tema reducir tamaño de almacenamiento
-            /*
-            val imageBitmap: Bitmap? = BitmapFactory.decodeFile(currentPhotoPath)
-            val outputStream: FileOutputStream = FileOutputStream(currentPhotoPath)
-            imageBitmap?.compress(
-                Bitmap.CompressFormat.JPEG,
-                20,
-                outputStream
-            ); // this line will reduce the size , try changing the second argument to adjust to correct size , it ranges 0-100
-            */
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    private fun sendReport() {
+    private fun continueToMap() {
         if (checkData()) {
             val title = _binding?.titleTextInput?.text.toString()
             val fishingType = _binding?.spinner?.selectedItem.toString()
             val sdf = SimpleDateFormat("dd/M/yyyy")
             val currentDate = sdf.format(Date())
-            val report = Report(0, title, fishingType, currentDate, currentPhotoPath)
-            model.insert(report)
-            Toast.makeText(activity, "Reporte agregado correctamente", Toast.LENGTH_LONG).show()
-            findNavController().navigate(R.id.goToMyReportsFromReportAddAction)
+            val report = Report(0, title, fishingType, currentDate, currentPhotoPath, null, null)
+
+           // Toast.makeText(activity, "Reporte agregado correctamente", Toast.LENGTH_LONG).show()
+
+            val action = ReportAddFragmentDirections.goToMapsFragmentAction(report)
+            findNavController().navigate(action)
+
         }
     }
+
 
     private fun checkData(): Boolean {
         return if (_binding!!.titleTextInput.text?.isEmpty() == true) {
@@ -214,7 +206,5 @@ class ReportAddFragment : Fragment() {
         _binding!!.captureImageView.setImageBitmap(rotatedBitmap)
     }
 
-    private fun goToMap() {
-        findNavController().navigate(R.id.goToMapsFragment)
-    }
+
 }
