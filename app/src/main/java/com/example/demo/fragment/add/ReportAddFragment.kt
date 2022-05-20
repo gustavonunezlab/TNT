@@ -59,6 +59,7 @@ class ReportAddFragment : Fragment() {
         _binding!!.helpButton.setOnClickListener { fishingInfo() }
         _binding!!.photoButton.setOnClickListener { takePhoto() }
         _binding!!.sendButton.setOnClickListener { sendReport() }
+        _binding!!.mapButton.setOnClickListener { goToMap() }
         return view
     }
 
@@ -202,6 +203,18 @@ class ReportAddFragment : Fragment() {
 
         val rotatedBitmap =
             Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+
+        val outputStream: FileOutputStream = FileOutputStream(currentPhotoPath)
+        rotatedBitmap?.compress(
+            Bitmap.CompressFormat.JPEG,
+            80,
+            outputStream
+        )
+
         _binding!!.captureImageView.setImageBitmap(rotatedBitmap)
+    }
+
+    private fun goToMap() {
+        findNavController().navigate(R.id.goToMapsFragment)
     }
 }

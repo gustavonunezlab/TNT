@@ -76,15 +76,16 @@ class LoginFragment : Fragment() {
     }
 
     private fun checkLogin() {
-        if (checkUser()) {
-            if (checkPassword()) {
-                findNavController().navigate(R.id.goToHomeFragment)
-            } else {
-                showErrorMsg()
-            }
-        } else {
-            showErrorMsg()
-        }
+        //Se comenta la opción para validar usuario y clave mágico
+        //   if (checkUser()) {
+        //   if (checkPassword()) {
+        findNavController().navigate(R.id.goToHomeFragment)
+        //    } else {
+        //      showErrorMsg()
+        //   }
+        //  } else {
+        //     showErrorMsg()
+        //  }
     }
 
     private fun goBack() {

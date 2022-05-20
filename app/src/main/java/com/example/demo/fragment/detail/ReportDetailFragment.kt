@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.demo.R
 import com.example.demo.databinding.FragmentReportDetailBinding
+import java.io.File
 
 class ReportDetailFragment : Fragment() {
 
@@ -34,11 +35,13 @@ class ReportDetailFragment : Fragment() {
         _binding!!.fishingTypeTextView.text = args.currentReport.fishing_type
         _binding!!.dateTextView.text = args.currentReport.date
 
-        val imageBitmap: Bitmap? = BitmapFactory.decodeFile(args.currentReport.photo_path)
-        rotateImage(imageBitmap!!)
+        val file = File(args.currentReport.photo_path)
+        if (file.exists()) {
+            val imageBitmap: Bitmap? = BitmapFactory.decodeFile(args.currentReport.photo_path)
+            rotateImage(imageBitmap!!)
+        }
 
         _binding!!.doneButton.setOnClickListener { goBack() }
-
         _binding!!.updateButton.setOnClickListener { updateReport() }
 
         return binding.root
@@ -47,6 +50,7 @@ class ReportDetailFragment : Fragment() {
     private fun goBack() {
         findNavController().navigate(R.id.goToMyReportsFromReportDetailAction)
     }
+
     private fun updateReport() {
         val action = ReportDetailFragmentDirections.goToReportUpdateAction(args.currentReport)
         findNavController().navigate(action)

@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.R
 import com.example.demo.model.Report
+import java.io.File
 
 class ReportListAdapter(
     private val itemClickListener: OnReportClickListener
@@ -50,45 +51,50 @@ class ReportListAdapter(
             date.text = report.date
 
             //Reducing image size to show on list
-            val options = BitmapFactory.Options().apply {
-                inSampleSize = 20
+            /*val options = BitmapFactory.Options().apply {
+                         inSampleSize = 20
+                     }
+                     */
+
+
+            val file = File(report.photo_path)
+            if (file.exists()) {
+
+                val imageBitmap: Bitmap = BitmapFactory.decodeFile(report.photo_path)
+                val exif = ExifInterface(report.photo_path)
+                val orientation: Int =
+                    exif.getAttributeInt(
+                        ExifInterface.TAG_ORIENTATION,
+                        ExifInterface.ORIENTATION_NORMAL
+                    )
+                Log.i("orientation", orientation.toString())
+
+                val matrix = Matrix()
+                when (orientation) {
+                    ExifInterface.ORIENTATION_ROTATE_90 -> {
+                        matrix.setRotate(90F)
+                    }
+                    ExifInterface.ORIENTATION_ROTATE_180 -> {
+                        matrix.setRotate(180F)
+                    }
+                    ExifInterface.ORIENTATION_ROTATE_270 -> {
+                        matrix.setRotate(270F)
+                    }
+                }
+
+                val rotatedBitmap =
+                    Bitmap.createBitmap(
+                        imageBitmap!!,
+                        0,
+                        0,
+                        imageBitmap!!.width,
+                        imageBitmap!!.height,
+                        matrix,
+                        true
+                    )
+
+                image.setImageBitmap(rotatedBitmap)
             }
-
-
-            val imageBitmap: Bitmap = BitmapFactory.decodeFile(report.photo_path, options)
-            val exif = ExifInterface(report.photo_path)
-            val orientation: Int =
-                exif.getAttributeInt(
-                    ExifInterface.TAG_ORIENTATION,
-                    ExifInterface.ORIENTATION_NORMAL
-                )
-            Log.i("orientation", orientation.toString())
-
-            val matrix = Matrix()
-            when (orientation) {
-                ExifInterface.ORIENTATION_ROTATE_90 -> {
-                    matrix.setRotate(90F)
-                }
-                ExifInterface.ORIENTATION_ROTATE_180 -> {
-                    matrix.setRotate(180F)
-                }
-                ExifInterface.ORIENTATION_ROTATE_270 -> {
-                    matrix.setRotate(270F)
-                }
-            }
-
-            val rotatedBitmap =
-                Bitmap.createBitmap(
-                    imageBitmap!!,
-                    0,
-                    0,
-                    imageBitmap!!.width,
-                    imageBitmap!!.height,
-                    matrix,
-                    true
-                )
-
-            image.setImageBitmap(rotatedBitmap)
         }
     }
 

@@ -62,6 +62,7 @@ class ReportUpdateFragment : Fragment() {
         currentPhotoPath = args.currentReport.photo_path
         _binding!!.spinner.adapter = arrayAdapter
         _binding!!.helpButton.setOnClickListener { fishingInfo() }
+        _binding!!.mapButton.setOnClickListener { goToMap() }
         _binding!!.photoButton.setOnClickListener { takePhoto() }
         _binding!!.updateButton.setOnClickListener { updateReport() }
         val arrayPosition = arrayAdapter.getPosition(args.currentReport.fishing_type)
@@ -69,8 +70,11 @@ class ReportUpdateFragment : Fragment() {
 
         _binding!!.updateTitleTextInput.setText(args.currentReport.title)
 
-        val imageBitmap: Bitmap? = BitmapFactory.decodeFile(args.currentReport.photo_path)
-        rotateImage(imageBitmap!!)
+        val file = File(args.currentReport.photo_path)
+        if (file.exists()) {
+            val imageBitmap: Bitmap? = BitmapFactory.decodeFile(args.currentReport.photo_path)
+            rotateImage(imageBitmap!!)
+        }
         return view
     }
 
@@ -136,14 +140,14 @@ class ReportUpdateFragment : Fragment() {
         val title = _binding?.updateTitleTextInput?.text.toString()
         val fishingType = _binding?.spinner?.selectedItem.toString()
         val date = args.currentReport.date
-        val photoPath: String
-        // If empty, photo path did not change
 
-        if (currentPhotoPath == "") {
-            photoPath = args.currentReport.photo_path
+        // If empty, photo path did not change
+        val photoPath: String = if (currentPhotoPath == "") {
+            args.currentReport.photo_path
         } else {
-            photoPath = currentPhotoPath
+            currentPhotoPath
         }
+
         val updatedReport = Report(args.currentReport.id, title, fishingType, date, photoPath)
         model.updateReport(updatedReport)
         Toast.makeText(activity, "Reporte editado correctamente", Toast.LENGTH_LONG).show()
@@ -191,8 +195,20 @@ class ReportUpdateFragment : Fragment() {
 
         val rotatedBitmap =
             Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+
+        val outputStream: FileOutputStream = FileOutputStream(currentPhotoPath)
+        rotatedBitmap?.compress(
+            Bitmap.CompressFormat.JPEG,
+            80,
+            outputStream
+        )
+
         _binding!!.updateCaptureImageView.setImageBitmap(rotatedBitmap)
 
+    }
+
+    private fun goToMap() {
+        findNavController().navigate(R.id.goToMapsFragment)
     }
 
 }
