@@ -59,7 +59,7 @@ class ReportAddFragment : Fragment() {
         _binding!!.spinner.adapter = arrayAdapter
         _binding!!.helpButton.setOnClickListener { fishingInfo() }
         _binding!!.photoButton.setOnClickListener { takePhoto() }
-        _binding!!.sendButton.setOnClickListener { continueToMap() }
+        _binding!!.continueButton.setOnClickListener { continueToMap() }
 
         return view
     }
@@ -135,14 +135,11 @@ class ReportAddFragment : Fragment() {
             val currentDate = sdf.format(Date())
             val report = Report(0, title, fishingType, currentDate, currentPhotoPath, null, null)
 
-           // Toast.makeText(activity, "Reporte agregado correctamente", Toast.LENGTH_LONG).show()
-
             val action = ReportAddFragmentDirections.goToMapsFragmentAction(report)
             findNavController().navigate(action)
 
         }
     }
-
 
     private fun checkData(): Boolean {
         return if (_binding!!.titleTextInput.text?.isEmpty() == true) {

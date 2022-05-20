@@ -68,6 +68,9 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/goToMapsFragmentFromReportDetailFragment"
+            app:destination="@id/maps_fragment" />
     </fragment>
     <fragment
         android:id="@+id/about_fragment"
@@ -165,11 +168,14 @@
         <argument
             android:name="currentReport"
             app:argType="com.example.demo.model.Report" />
+        <action
+            android:id="@+id/goToMapsFragmentFromReportUpdateFragment"
+            app:destination="@id/maps_fragment" />
     </fragment>
     <fragment
         android:id="@+id/maps_fragment"
         android:name="com.example.demo.fragment.maps.MapsFragment"
-        android:label="Fishing App: Añadir marcador"
+        android:label="Fishing App: Mapa de capturas"
         tools:layout="@layout/fragment_maps" >
         <argument
             android:name="currentReport"

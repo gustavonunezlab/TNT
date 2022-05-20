@@ -31,20 +31,44 @@ class MapsFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: MapsFragmentArgs by navArgs()
     private lateinit var model: ReportViewModel
+    private var marker: Marker? = null
+    private var smallMarker: Bitmap? = null
 
     private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-        val conicet = LatLng(-42.78469053756446, -65.00895665709373)
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(conicet, 12F))
-        setMapLongClick(googleMap)
+
+        val height = 140
+        val width = 140
+        val bitmapdraw = resources.getDrawable(R.drawable.map_icon) as BitmapDrawable
+        val b = bitmapdraw.bitmap
+        smallMarker = Bitmap.createScaledBitmap(b, width, height, false)
+
+        if (args.currentReport.latitude != null && args.currentReport.longitude != null) {
+            val pos = LatLng(args.currentReport.latitude!!, args.currentReport.longitude!!)
+            val snippet = String.format(
+                Locale.getDefault(),
+                "Lat: %1$.5f, Long: %2$.5f",
+                pos.latitude,
+                pos.longitude
+            )
+            marker = googleMap.addMarker(
+                MarkerOptions()
+                    .position(pos)
+                    .title(args.currentReport.title)
+                    .snippet(snippet)
+                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+            )
+            marker!!.showInfoWindow()
+            if (findNavController().previousBackStackEntry?.destination?.displayName!! == "com.example.demo:id/report_update_fragment") {
+                _binding!!.sendReportActionButton.show()
+                setMapLongClick(googleMap)
+            }
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker!!.position, 12F))
+        } else {
+            _binding!!.sendReportActionButton.show()
+            val pos = LatLng(-42.78469053756446, -65.00895665709373)
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 12F))
+            setMapLongClick(googleMap)
+        }
     }
 
     override fun onCreateView(
@@ -58,9 +82,11 @@ class MapsFragment : Fragment() {
         model = ViewModelProvider(this)[ReportViewModel::class.java]
 
         _binding!!.goBackActionButton.setOnClickListener { goBack() }
-        _binding!!.sendReportActionButton.setOnClickListener { sendReport() }
-
-
+        if (findNavController().previousBackStackEntry?.destination?.displayName!! == "com.example.demo:id/report_update_fragment") {
+            _binding!!.sendReportActionButton.setOnClickListener { updateReport() }
+        } else {
+            _binding!!.sendReportActionButton.setOnClickListener { sendReport() }
+        }
         return view
     }
 
@@ -71,14 +97,6 @@ class MapsFragment : Fragment() {
     }
 
     private fun setMapLongClick(map: GoogleMap) {
-
-        val height = 140
-        val width = 140
-        val bitmapdraw = resources.getDrawable(R.drawable.map_icon) as BitmapDrawable
-        val b = bitmapdraw.bitmap
-        val smallMarker = Bitmap.createScaledBitmap(b, width, height, false)
-
-        var marker: Marker? = null
 
         map.setOnMapLongClickListener { latLng ->
 // Snippet --> texto adicional que se muestra debajo del titulo.
@@ -93,14 +111,12 @@ class MapsFragment : Fragment() {
                 marker = map.addMarker(
                     MarkerOptions()
                         .position(latLng)
-                        .title("Captura")
+                        .title(args.currentReport.title)
                         .snippet(snippet)
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                 )
                 args.currentReport.latitude = latLng.latitude
                 args.currentReport.longitude = latLng.longitude
-                Log.i("Pos: Latitude = ", args.currentReport.latitude.toString())
-                Log.i("Pos: Longitude = ", args.currentReport.longitude.toString())
                 marker!!.showInfoWindow()
             } else {
                 marker!!.hideInfoWindow()
@@ -108,8 +124,6 @@ class MapsFragment : Fragment() {
                 marker!!.snippet = snippet
                 args.currentReport.latitude = latLng.latitude
                 args.currentReport.longitude = latLng.longitude
-                Log.i("Pos: Latitude = ", args.currentReport.latitude.toString())
-                Log.i("Pos: Longitude = ", args.currentReport.longitude.toString())
                 marker!!.showInfoWindow()
             }
         }
@@ -128,10 +142,17 @@ class MapsFragment : Fragment() {
     }
 
     private fun checkCoords(): Boolean {
-        if(args.currentReport.latitude == null && args.currentReport.longitude == null) {
-            Toast.makeText(activity, "Seleccione una ubicación en el mapa", Toast.LENGTH_LONG).show()
+        if (args.currentReport.latitude == null && args.currentReport.longitude == null) {
+            Toast.makeText(activity, "Seleccione una ubicación en el mapa", Toast.LENGTH_LONG)
+                .show()
             return false
         }
         return true
+    }
+
+    private fun updateReport() {
+        model.updateReport(args.currentReport)
+        Toast.makeText(activity, "Reporte editado correctamente", Toast.LENGTH_LONG).show()
+        findNavController().navigate(R.id.my_reports_fragment)
     }
 }

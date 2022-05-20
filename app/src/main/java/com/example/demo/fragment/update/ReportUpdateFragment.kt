@@ -27,6 +27,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.demo.R
 import com.example.demo.databinding.FragmentReportUpdateBinding
 import com.example.demo.fragment.add.REQUEST_TAKE_PHOTO
+import com.example.demo.fragment.add.ReportAddFragmentDirections
 import com.example.demo.model.Report
 import com.example.demo.viewModel.ReportViewModel
 import java.io.File
@@ -60,9 +61,8 @@ class ReportUpdateFragment : Fragment() {
         currentPhotoPath = args.currentReport.photo_path
         _binding!!.spinner.adapter = arrayAdapter
         _binding!!.helpButton.setOnClickListener { fishingInfo() }
-        _binding!!.mapButton.setOnClickListener { goToMap() }
         _binding!!.photoButton.setOnClickListener { takePhoto() }
-        _binding!!.updateButton.setOnClickListener { updateReport() }
+        _binding!!.continueButton.setOnClickListener { continueToMap() }
         val arrayPosition = arrayAdapter.getPosition(args.currentReport.fishing_type)
         _binding!!.spinner.setSelection(arrayPosition)
 
@@ -133,27 +133,6 @@ class ReportUpdateFragment : Fragment() {
         }
     }
 
-    private fun updateReport() {
-
-        val title = _binding?.updateTitleTextInput?.text.toString()
-        val fishingType = _binding?.spinner?.selectedItem.toString()
-        val date = args.currentReport.date
-
-        // If empty, photo path did not change
-        val photoPath: String = if (currentPhotoPath == "") {
-            args.currentReport.photo_path
-        } else {
-            currentPhotoPath
-        }
-    //TODO modificar update para agregar coordenadas.
-        val updatedReport = Report(args.currentReport.id, title, fishingType, date, photoPath, null, null)
-        model.updateReport(updatedReport)
-        Toast.makeText(activity, "Reporte editado correctamente", Toast.LENGTH_LONG).show()
-
-        findNavController().navigate(R.id.my_reports_fragment)
-
-    }
-
     private fun reduceBitmap(): Bitmap {
         val targetImageViewWidth = _binding!!.updateCaptureImageView.width
         val targetImageViewHeight = _binding!!.updateCaptureImageView.height
@@ -205,8 +184,20 @@ class ReportUpdateFragment : Fragment() {
 
     }
 
-    private fun goToMap() {
-        findNavController().navigate(R.id.goToMapsFragmentAction)
+    private fun continueToMap() {
+        val title = _binding?.updateTitleTextInput?.text.toString()
+        val fishingType = _binding?.spinner?.selectedItem.toString()
+        val date = args.currentReport.date
+
+        // If empty, photo path did not change
+        val photoPath: String = if (currentPhotoPath == "") {
+            args.currentReport.photo_path
+        } else {
+            currentPhotoPath
+        }
+        val updatedReport = Report(args.currentReport.id, title, fishingType, date, photoPath, args.currentReport.latitude, args.currentReport.longitude)
+        val action = ReportUpdateFragmentDirections.goToMapsFragmentFromReportUpdateFragment(updatedReport)
+        findNavController().navigate(action)
     }
 
 }

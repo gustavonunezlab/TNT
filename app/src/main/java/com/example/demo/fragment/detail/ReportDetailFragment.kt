@@ -43,8 +43,14 @@ class ReportDetailFragment : Fragment() {
 
         _binding!!.doneButton.setOnClickListener { goBack() }
         _binding!!.updateButton.setOnClickListener { updateReport() }
+        _binding!!.mapButton.setOnClickListener { goMap() }
 
         return binding.root
+    }
+
+    private fun goMap() {
+        val action = ReportDetailFragmentDirections.goToMapsFragmentFromReportDetailFragment(args.currentReport)
+        findNavController().navigate(action)
     }
 
     private fun goBack() {
