@@ -55,7 +55,6 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
     val repository: ReportsRepository
     val allReports: LiveData<List<Report>>
     init {
-        Log.i("ReportViewModel", "cargo?")
         val reportsDao = ReportRoomDatabase
             .getDatabase(application, viewModelScope).reportDao()
         repository = ReportsRepository(reportsDao)

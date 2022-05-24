@@ -99,7 +99,7 @@ class MapsFragment : Fragment() {
     private fun setMapLongClick(map: GoogleMap) {
 
         map.setOnMapLongClickListener { latLng ->
-// Snippet --> texto adicional que se muestra debajo del titulo.
+        // Snippet --> texto adicional que se muestra debajo del titulo.
             val snippet = String.format(
                 Locale.getDefault(),
                 "Lat: %1$.5f, Long: %2$.5f",

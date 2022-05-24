@@ -27,6 +27,7 @@ class ContestListFragment : Fragment(), ContestListAdapter.OnContestClickListene
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentContestListBinding.inflate(inflater, container, false)
+        _binding!!.homeActionButton.setOnClickListener{ goHome() }
 
         val contestList: RecyclerView = binding.list
         val contestListAdapter = ContestListAdapter(this) // (2)
@@ -49,6 +50,10 @@ class ContestListFragment : Fragment(), ContestListAdapter.OnContestClickListene
         model.setImage(bitmap)
 
         findNavController().navigate(R.id.contest_detail_fragment)
+    }
+
+    private fun goHome() {
+        findNavController().navigate(R.id.home_fragment)
     }
 
 }

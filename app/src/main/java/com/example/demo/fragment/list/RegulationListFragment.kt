@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.demo.R
 import com.example.demo.model.Regulation
 import com.example.demo.adapter.RegulationListAdapter
 import com.example.demo.databinding.FragmentRegulationListBinding
@@ -20,6 +22,7 @@ class RegulationListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentRegulationListBinding.inflate(inflater, container, false)
+        _binding!!.homeActionButton.setOnClickListener{ goHome() }
 
         val regulationList: RecyclerView = binding.list
         val regulationListAdapter = RegulationListAdapter() // (2)
@@ -28,6 +31,10 @@ class RegulationListFragment : Fragment() {
 
         val view = binding.root
         return view
+    }
+
+    private fun goHome() {
+        findNavController().navigate(R.id.home_fragment)
     }
 
 }
