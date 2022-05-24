@@ -46,9 +46,9 @@ class MapsFragment : Fragment() {
             val pos = LatLng(args.currentReport.latitude!!, args.currentReport.longitude!!)
             val snippet = String.format(
                 Locale.getDefault(),
-                "Lat: %1$.5f, Long: %2$.5f",
-                pos.latitude,
-                pos.longitude
+                "Tipo de pesca: %1$.15s, Fecha: %2$.15s",
+                args.currentReport.fishing_type,
+                args.currentReport.date
             )
             marker = googleMap.addMarker(
                 MarkerOptions()
