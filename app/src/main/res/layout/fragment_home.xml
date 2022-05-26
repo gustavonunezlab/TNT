@@ -10,44 +10,41 @@
         android:id="@+id/myReportsButton"
         android:layout_width="262dp"
         android:layout_height="55dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="72dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="24dp"
         android:text="Mis reportes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/regulationsButton"
-        android:layout_width="262dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="28dp"
-        android:text="Reglamentaciones"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contestsButton" />
-
-    <Button
-        android:id="@+id/contestsButton"
-        android:layout_width="262dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="24dp"
-        android:text="Concursos"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newReportButton" />
 
     <Button
         android:id="@+id/newReportButton"
         android:layout_width="262dp"
         android:layout_height="55dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="5dp"
         android:text="Nuevo reporte"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myReportsButton" />
+
+    <Button
+        android:id="@+id/contestsButton"
+        android:layout_width="262dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="5dp"
+        android:text="Concursos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newReportButton" />
+
+    <Button
+        android:id="@+id/regulationsButton"
+        android:layout_width="262dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="5dp"
+        android:text="Reglamentaciones"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contestsButton" />
 
     <Button
         android:id="@+id/logOutButton"
@@ -59,14 +56,34 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/goToMapButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="44dp"
+        android:text="Mis capturas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="308dp"
-        android:layout_height="213dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="260dp"
+        android:layout_height="262dp"
+
+        android:layout_marginStart="135dp"
+        android:src="@drawable/pescador"
+        app:layout_constraintBottom_toTopOf="@+id/logOutButton"
+        app:layout_constraintStart_toStartOf="@+id/imageView3" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="215dp"
+        android:layout_height="163dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:scaleX="-1"
         android:src="@drawable/barquitos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regulationsButton" />
 

@@ -24,10 +24,14 @@ class RegulationListFragment : Fragment() {
         _binding = FragmentRegulationListBinding.inflate(inflater, container, false)
         _binding!!.homeActionButton.setOnClickListener{ goHome() }
 
+        if (findNavController().previousBackStackEntry?.destination?.displayName!! == "com.example.demo:id/main_fragment") {
+            _binding!!.homeActionButton.hide()
+        }
+
         val regulationList: RecyclerView = binding.list
-        val regulationListAdapter = RegulationListAdapter() // (2)
-        regulationList.adapter = regulationListAdapter // (3)
-        regulationListAdapter.regulations = Regulation.data // (4)
+        val regulationListAdapter = RegulationListAdapter()
+        regulationList.adapter = regulationListAdapter
+        regulationListAdapter.regulations = Regulation.data
 
         val view = binding.root
         return view

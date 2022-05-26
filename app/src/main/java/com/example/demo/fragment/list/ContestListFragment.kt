@@ -29,6 +29,11 @@ class ContestListFragment : Fragment(), ContestListAdapter.OnContestClickListene
         _binding = FragmentContestListBinding.inflate(inflater, container, false)
         _binding!!.homeActionButton.setOnClickListener{ goHome() }
 
+        if (findNavController().previousBackStackEntry?.destination?.displayName!! == "com.example.demo:id/main_fragment") {
+            _binding!!.homeActionButton.hide()
+        }
+
+
         val contestList: RecyclerView = binding.list
         val contestListAdapter = ContestListAdapter(this) // (2)
         contestList.adapter = contestListAdapter // (3)

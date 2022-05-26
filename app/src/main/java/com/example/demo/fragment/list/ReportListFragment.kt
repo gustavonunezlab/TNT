@@ -49,8 +49,6 @@ class ReportListFragment : Fragment(), ReportListAdapter.OnReportClickListener {
             )
         )
 
-        _binding!!.mapActionButton.setOnClickListener { goMaps() }
-
         val view = binding.root
         return view
     }
@@ -62,10 +60,6 @@ class ReportListFragment : Fragment(), ReportListAdapter.OnReportClickListener {
 
     private fun goHome() {
         findNavController().navigate(R.id.home_fragment)
-    }
-
-    private fun goMaps() {
-        findNavController().navigate(R.id.goToMultipleMapsFragmentFromReportListFragment)
     }
 
 }

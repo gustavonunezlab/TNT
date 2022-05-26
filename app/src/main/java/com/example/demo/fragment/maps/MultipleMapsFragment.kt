@@ -33,8 +33,8 @@ class MultipleMapsFragment : Fragment() {
 
     private val callback = OnMapReadyCallback { googleMap ->
 
-        val height = 140
-        val width = 140
+        val height = 120
+        val width = 120
         val bitmapdraw = resources.getDrawable(R.drawable.map_icon) as BitmapDrawable
         val b = bitmapdraw.bitmap
         smallMarker = Bitmap.createScaledBitmap(b, width, height, false)
