@@ -52,8 +52,7 @@ class MainFragment : Fragment(), ReportListAdapter.OnReportClickListener {
         findNavController().navigate(R.id.loginAction)
     }
     private fun registerApp() {
-    //    findNavController().navigate(R.id.registerAction)
-        Toast.makeText(activity, "En construcción", Toast.LENGTH_LONG).show()
+        findNavController().navigate(R.id.registerAction)
     }
     override fun onItemClick(report: Report) {
 

@@ -6,11 +6,11 @@ import com.example.demo.model.Report
 
 class ReportsRepository(private val reportDao: ReportDAO) {
     val allReports: LiveData<List<Report>> = reportDao.getReports()
-    suspend fun insertReport(report: Report) {
+    fun insertReport(report: Report) {
         reportDao.insertReport(report)
     }
 
-    suspend fun updateReport(report: Report) {
+    fun updateReport(report: Report) {
         reportDao.updateReport(report)
     }
 }

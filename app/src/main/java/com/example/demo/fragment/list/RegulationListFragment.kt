@@ -1,10 +1,9 @@
 package com.example.demo.fragment.list
 
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.R
@@ -21,6 +20,7 @@ class RegulationListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         _binding = FragmentRegulationListBinding.inflate(inflater, container, false)
         _binding!!.homeActionButton.setOnClickListener{ goHome() }
 
@@ -39,6 +39,18 @@ class RegulationListFragment : Fragment() {
 
     private fun goHome() {
         findNavController().navigate(R.id.home_fragment)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.regulation_filter_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        return if (id == R.id.regulation_action_filter) {
+            Toast.makeText(activity, "holanda", Toast.LENGTH_LONG).show()
+            true
+        } else super.onOptionsItemSelected(item)
     }
 
 }

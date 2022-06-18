@@ -53,7 +53,7 @@ public abstract class ReportRoomDatabase : RoomDatabase() {
                 super.onOpen(db)
                 INSTANCIA?.let { database ->
                     scope.launch {
-                        populateDatabase(database.reportDao())
+//                        populateDatabase(database.reportDao())
                     }
                 }
             }

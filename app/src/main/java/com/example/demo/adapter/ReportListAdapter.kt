@@ -50,13 +50,6 @@ class ReportListAdapter(
             fishingType.text = report.fishing_type
             date.text = report.date
 
-            //Reducing image size to show on list
-            /*val options = BitmapFactory.Options().apply {
-                         inSampleSize = 20
-                     }
-                     */
-
-
             val file = File(report.photo_path)
             if (file.exists()) {
 
@@ -104,8 +97,5 @@ class ReportListAdapter(
         fun onItemClick(report: Report)
     }
 
-    private fun rotateImage(bitmap: Bitmap) {
 
-
-    }
 }

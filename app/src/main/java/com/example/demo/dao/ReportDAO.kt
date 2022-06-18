@@ -11,15 +11,16 @@ interface ReportDAO {
     fun getReports(): LiveData<List<Report>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertReport(report: Report)
+    fun insertReport(report: Report)
 
     @Query("DELETE FROM report_table")
-    suspend fun deleteAll()
+    fun deleteAll()
 
     @Query("SELECT COUNT(id) FROM report_table")
-    suspend fun getCount(): Int
+    fun getCount(): Int
 
+    @Transaction
     @Update
-    suspend fun updateReport(report: Report)
+    fun updateReport(report: Report)
 }
 

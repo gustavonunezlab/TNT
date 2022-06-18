@@ -93,7 +93,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun checkUser(): Boolean {
-        if (_binding?.editTextUserName?.text.toString() == "admin")
+        if (_binding?.editTextEmail?.text.toString() == "admin")
             return true
         return false
     }
