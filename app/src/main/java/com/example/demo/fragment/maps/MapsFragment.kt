@@ -55,7 +55,7 @@ class MapsFragment : Fragment() {
                     .position(pos)
                     .title(args.currentReport.title)
                     .snippet(snippet)
-                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker!!))
             )
             marker!!.showInfoWindow()
             if (findNavController().previousBackStackEntry?.destination?.displayName!! == "com.example.demo:id/report_update_fragment") {
@@ -113,7 +113,7 @@ class MapsFragment : Fragment() {
                         .position(latLng)
                         .title(args.currentReport.title)
                         .snippet(snippet)
-                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker!!))
                 )
                 args.currentReport.latitude = latLng.latitude
                 args.currentReport.longitude = latLng.longitude

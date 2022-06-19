@@ -54,7 +54,7 @@ class MultipleMapsFragment : Fragment() {
                     .position(pos)
                     .title(report.title)
                     .snippet(snippet)
-                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                    .icon(BitmapDescriptorFactory.fromBitmap(smallMarker!!))
             )
         }
         val pos = LatLng(-42.78469053756446, -65.00895665709373)
