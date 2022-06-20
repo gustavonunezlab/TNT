@@ -23,7 +23,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
+
 
 class MapsFragment : Fragment() {
 
@@ -34,6 +37,7 @@ class MapsFragment : Fragment() {
     private var marker: Marker? = null
     private var smallMarker: Bitmap? = null
 
+    private val db = FirebaseFirestore.getInstance()
     private val callback = OnMapReadyCallback { googleMap ->
 
         val height = 120
@@ -99,7 +103,7 @@ class MapsFragment : Fragment() {
     private fun setMapLongClick(map: GoogleMap) {
 
         map.setOnMapLongClickListener { latLng ->
-        // Snippet --> texto adicional que se muestra debajo del titulo.
+            // Snippet --> texto adicional que se muestra debajo del titulo.
             val snippet = String.format(
                 Locale.getDefault(),
                 "Lat: %1$.5f, Long: %2$.5f",
@@ -135,7 +139,21 @@ class MapsFragment : Fragment() {
 
     private fun sendReport() {
         if (checkCoords()) {
+      /*      db.collection("reports").document(args.currentReport.id.toString()).set(
+                hashMapOf(
+                    "title" to args.currentReport.title,
+                    "fishing_type" to args.currentReport.fishing_type,
+                    "date" to args.currentReport.date,
+                    "photo_path" to args.currentReport.photo_path,
+                    "latitude" to args.currentReport.latitude,
+                    "longitude" to args.currentReport.longitude
+                )
+            )*/
+
+
+
             model.insert(args.currentReport)
+            db.collection("reports").add(args.currentReport)
             Toast.makeText(activity, "Reporte agregado correctamente", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.my_reports_fragment)
         }
