@@ -5,5 +5,7 @@
     <item
         android:id="@+id/regulation_action_filter"
         android:title="Seleccionar una ubicación"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_baseline_search_24"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 </menu>

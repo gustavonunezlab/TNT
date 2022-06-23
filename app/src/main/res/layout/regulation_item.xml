@@ -35,4 +35,14 @@
         app:layout_constraintTop_toBottomOf="@+id/regulation_title"
         app:layout_constraintVertical_bias="0.0"
         tools:text="@tools:sample/lorem/random" />
+
+    <TextView
+        android:id="@+id/regulation_zone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/regulation_description"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

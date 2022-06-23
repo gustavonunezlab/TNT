@@ -31,11 +31,12 @@ class RegulationListAdapter: RecyclerView.Adapter<RegulationListAdapter.Regulati
     class RegulationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.regulation_title)
         val description: TextView = view.findViewById(R.id.regulation_description)
+        val zone: TextView = view.findViewById(R.id.regulation_zone)
 
         fun bind(regulation: Regulation) {
             title.text = regulation.title
             description.text = regulation.description
-
+            zone.text = regulation.zone
         }
     }
     override fun getItemCount() = regulations.size

@@ -3,7 +3,6 @@ package com.example.demo.fragment.maps
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,10 +22,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import java.io.File
 import java.util.*
-
 
 class MapsFragment : Fragment() {
 
@@ -38,6 +36,7 @@ class MapsFragment : Fragment() {
     private var smallMarker: Bitmap? = null
 
     private val db = FirebaseFirestore.getInstance()
+
     private val callback = OnMapReadyCallback { googleMap ->
 
         val height = 120
@@ -139,7 +138,8 @@ class MapsFragment : Fragment() {
 
     private fun sendReport() {
         if (checkCoords()) {
-      /*      db.collection("reports").document(args.currentReport.id.toString()).set(
+
+            db.collection("reports").document().set(
                 hashMapOf(
                     "title" to args.currentReport.title,
                     "fishing_type" to args.currentReport.fishing_type,
@@ -148,12 +148,8 @@ class MapsFragment : Fragment() {
                     "latitude" to args.currentReport.latitude,
                     "longitude" to args.currentReport.longitude
                 )
-            )*/
-
-
-
-            model.insert(args.currentReport)
-            db.collection("reports").add(args.currentReport)
+            )
+            model.insert(args.currentReport) // Esto queda o se va??
             Toast.makeText(activity, "Reporte agregado correctamente", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.my_reports_fragment)
         }

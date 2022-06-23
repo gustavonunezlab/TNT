@@ -27,5 +27,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/list"
         app:maxImageSize="35dp"
-        app:srcCompat="@drawable/ic_home" />
+        app:srcCompat="@drawable/ic_home"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
